@@ -271,3 +271,34 @@ if (themeButton) themeButton.addEventListener('click', () => {
         })
     })
 })()
+
+/*==================== INSTAGRAM-STYLE TABS ====================*/
+;(function () {
+    const tabs = document.querySelectorAll('.gram-tab')
+    if (!tabs.length) return
+
+    const panels = document.querySelectorAll('.gram-panel')
+
+    function show(name) {
+        tabs.forEach(tab => {
+            const on = tab.dataset.tab === name
+            tab.classList.toggle('is-active', on)
+            tab.setAttribute('aria-selected', on ? 'true' : 'false')
+        })
+
+        panels.forEach(panel => {
+            const on = panel.id === 'panel-' + name
+            panel.hidden = !on
+            panel.classList.toggle('is-active', on)
+        })
+
+        // Deep-linkable without adding a history entry per click.
+        history.replaceState(null, '', name === 'posts' ? location.pathname : '#' + name)
+    }
+
+    tabs.forEach(tab => tab.addEventListener('click', () => show(tab.dataset.tab)))
+
+    // Honour /blog/#videos on arrival.
+    const wanted = location.hash.replace('#', '')
+    if (wanted && document.getElementById('panel-' + wanted)) show(wanted)
+})()

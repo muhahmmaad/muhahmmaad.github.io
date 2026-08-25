@@ -1,0 +1,21 @@
+# Publications, kept here rather than hardcoded in the page so the Research
+# tab and the homepage carousel stay in step with one another.
+- title: Role of Digital Banking in Bank of Punjab
+  meta: Research Methodology
+  status: Supervised
+  image: /assets/img/research1.svg
+
+- title: AI in Business Decision Making
+  meta: Ahmad, Fyyaz, Mustansar & Sarwar
+  status: Published
+  image: /assets/img/research2.svg
+
+- title: AI Social Traits in AI-Based Chatbots
+  meta: Ahmad, Fyyaz, Abid & Sarwar
+  status: Systematic review
+  image: /assets/img/research3.svg
+
+- title: A Model of AI Social Attributes
+  meta: Authenticity & purchase intention
+  status: Under review
+  image: /assets/img/research4.svg

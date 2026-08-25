@@ -122,6 +122,12 @@ function buildPost(fields, today) {
     front.push(`image: ${yamlString(cover)}`);
   }
 
+  const video = (fields['Video link'] || '').trim();
+  // Same guard as the cover: a URL or nothing, so stray text cannot break YAML.
+  if (video && /^https?:\/\/[^\s"']+$/.test(video)) {
+    front.push(`video: ${yamlString(video)}`);
+  }
+
   front.push('---');
 
   return {

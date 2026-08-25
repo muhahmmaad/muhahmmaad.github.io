@@ -10,38 +10,105 @@ permalink: /blog/
   from the posts themselves rather than a fixed list somewhere.
 {%- endcomment -%}
 {%- assign categories = site.posts | map: 'category' | compact | uniq | sort -%}
+{%- assign videos = site.posts | where_exp: "p", "p.video" -%}
 
 <section class="section blog-index">
     <h2 class="section__title">Blog</h2>
     <span class="section__subtitle">Notes on marketing &amp; research</span>
 
     <div class="container">
-        {% if site.posts.size > 0 %}
-            {% if categories.size > 1 %}
-                <div class="blog-filter" id="blog-filter">
-                    <button type="button" class="blog-filter__chip is-active" data-filter="all">
-                        All <span class="blog-filter__count">{{ site.posts.size }}</span>
-                    </button>
-                    {% for category in categories %}
-                        {% assign in_category = site.posts | where: 'category', category %}
-                        <button type="button" class="blog-filter__chip" data-filter="{{ category | slugify }}">
-                            {{ category }} <span class="blog-filter__count">{{ in_category.size }}</span>
+        {%- comment -%}
+          Instagram-style tab strip. Buttons rather than links so switching is
+          instant and does not reload; the panels are all in the page already.
+        {%- endcomment -%}
+        <div class="gram-tabs" role="tablist" aria-label="Content type">
+            <button type="button" class="gram-tab is-active" role="tab"
+                    aria-selected="true" aria-controls="panel-posts" data-tab="posts">
+                <i class="uil uil-apps gram-tab__icon" aria-hidden="true"></i>
+                <span class="gram-tab__label">Posts</span>
+            </button>
+
+            <button type="button" class="gram-tab" role="tab"
+                    aria-selected="false" aria-controls="panel-videos" data-tab="videos">
+                <i class="uil uil-play-circle gram-tab__icon" aria-hidden="true"></i>
+                <span class="gram-tab__label">Videos</span>
+            </button>
+
+            <button type="button" class="gram-tab" role="tab"
+                    aria-selected="false" aria-controls="panel-research" data-tab="research">
+                <i class="uil uil-file-bookmark-alt gram-tab__icon" aria-hidden="true"></i>
+                <span class="gram-tab__label">Research</span>
+            </button>
+        </div>
+
+        <!--==================== POSTS ====================-->
+        <div class="gram-panel is-active" id="panel-posts" role="tabpanel">
+            {% if site.posts.size > 0 %}
+                {% if categories.size > 1 %}
+                    <div class="blog-filter" id="blog-filter">
+                        <button type="button" class="blog-filter__chip is-active" data-filter="all">
+                            All <span class="blog-filter__count">{{ site.posts.size }}</span>
                         </button>
+                        {% for category in categories %}
+                            {% assign in_category = site.posts | where: 'category', category %}
+                            <button type="button" class="blog-filter__chip" data-filter="{{ category | slugify }}">
+                                {{ category }} <span class="blog-filter__count">{{ in_category.size }}</span>
+                            </button>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <div class="post-grid post-grid--gram" id="post-grid">
+                    {% for post in site.posts %}
+                        {% include post-card.html post=post index=forloop.index0 %}
                     {% endfor %}
                 </div>
-            {% endif %}
 
-            <div class="post-grid post-grid--gram" id="post-grid">
-                {% for post in site.posts %}
-                    {% include post-card.html post=post index=forloop.index0 %}
+                <p class="gram-empty" id="blog-no-match" hidden>
+                    Nothing in that category yet.
+                </p>
+            {% else %}
+                <p class="gram-empty">No posts yet — check back soon.</p>
+            {% endif %}
+        </div>
+
+        <!--==================== VIDEOS ====================-->
+        <div class="gram-panel" id="panel-videos" role="tabpanel" hidden>
+            {% if videos.size > 0 %}
+                <div class="post-grid post-grid--gram">
+                    {% for post in videos %}
+                        {% include post-card.html post=post index=forloop.index0 %}
+                    {% endfor %}
+                </div>
+            {% else %}
+                <p class="gram-empty">
+                    No videos yet. Add a <strong>Video link</strong> to any post — a
+                    YouTube, Vimeo or Instagram URL — and it will appear here with a
+                    play badge.
+                </p>
+            {% endif %}
+        </div>
+
+        <!--==================== RESEARCH ====================-->
+        <div class="gram-panel" id="panel-research" role="tabpanel" hidden>
+            <div class="post-grid post-grid--gram">
+                {% for item in site.data.research %}
+                    <article class="post-card">
+                        <a class="post-card__link" href="{{ '/#portfolio' | relative_url }}">
+                            <div class="post-card__media">
+                                <img src="{{ item.image | relative_url }}" alt="" class="post-card__img" loading="lazy">
+                                {% if item.status %}
+                                    <span class="post-card__tag">{{ item.status }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="post-card__body">
+                                <div class="post-card__meta">{{ item.meta }}</div>
+                                <h3 class="post-card__title">{{ item.title }}</h3>
+                            </div>
+                        </a>
+                    </article>
                 {% endfor %}
             </div>
-
-            <p class="blog-index__empty" id="blog-no-match" hidden>
-                Nothing in that category yet.
-            </p>
-        {% else %}
-            <p class="blog-index__empty">No posts yet — check back soon.</p>
-        {% endif %}
+        </div>
     </div>
 </section>

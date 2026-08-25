@@ -81,6 +81,15 @@ collections:
         required: false
         hint: Optional. Drag an image in, or leave blank to use a generated cover.
 
+      - label: Video link
+        name: video
+        widget: string
+        required: false
+        hint: >-
+          Optional. Paste a YouTube, Vimeo or Instagram URL. The post then
+          shows under the Videos tab with a play badge. Do not upload video
+          files — host them elsewhere and link.
+
       - label: Body
         name: body
         widget: markdown

@@ -33,6 +33,7 @@ body:
         - 'Influencer Marketing'
         - 'Research'
         - 'Social Media'
+        - 'video graphy'
     validations:
       required: false
 
@@ -65,6 +66,18 @@ body:
         Optional. Drag an image into the Post box below, then copy the link it
         creates and paste it here. Leave blank to use a generated cover.
       placeholder: https://github.com/user-attachments/assets/...
+    validations:
+      required: false
+
+  - type: input
+    id: video
+    attributes:
+      label: Video link
+      description: >-
+        Optional. A YouTube, Vimeo or Instagram URL. The post then appears
+        under the Videos tab with a play badge. Link to video, never upload
+        the file itself.
+      placeholder: https://www.youtube.com/watch?v=...
     validations:
       required: false
 

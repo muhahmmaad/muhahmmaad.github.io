@@ -2004,3 +2004,126 @@ textarea:focus-visible,
         max-width: 935px;
     }
 }
+
+/*==================== INSTAGRAM-STYLE TABS ====================*/
+.gram-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 3.5rem;
+    border-top: 1px solid var(--border-color);
+    margin-bottom: var(--mb-1-5);
+}
+
+.gram-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-family: var(--body-font);
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-semi-bold);
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--text-color-light);
+    background: none;
+    border: none;
+    /* The active marker is a border on top, the way a profile tab strip reads. */
+    border-top: 1px solid transparent;
+    margin-top: -1px;
+    padding: 1rem .25rem;
+    cursor: pointer;
+    transition: color .25s var(--ease), border-color .25s var(--ease);
+}
+
+.gram-tab:hover {
+    color: var(--title-color);
+}
+
+.gram-tab.is-active {
+    color: var(--title-color);
+    border-top-color: var(--title-color);
+}
+
+.gram-tab__icon {
+    font-size: 1.35rem;
+}
+
+.gram-panel[hidden] {
+    display: none;
+}
+
+.gram-empty {
+    text-align: center;
+    color: var(--text-color-light);
+    padding: 3rem 1rem;
+    max-width: 34rem;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+.gram-empty strong {
+    color: var(--title-color);
+}
+
+/* Labels cost more than they are worth on a narrow screen; the icons carry it. */
+@media screen and (max-width: 567px) {
+    .gram-tabs {
+        gap: 0;
+        justify-content: space-around;
+    }
+
+    .gram-tab__label {
+        display: none;
+    }
+
+    .gram-tab {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+/*========== Video badge on a tile ==========*/
+.post-card__video-badge {
+    position: absolute;
+    top: .6rem;
+    right: .6rem;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background-color: hsla(0, 0%, 0%, .45);
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
+    color: #FFF;
+    font-size: .9rem;
+}
+
+/* The Research tab has no dates or reading times to show. */
+.gram-panel .post-card__meta:empty {
+    display: none;
+}
+
+/*========== Video embed on a post ==========*/
+.post__video {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    margin: var(--mb-2) 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    background-color: #000;
+}
+
+.post__video iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.post__video-link {
+    margin: var(--mb-2) 0;
+}

@@ -25,7 +25,43 @@ layout: default
             {% endif %}
         </header>
 
-        {% if page.image %}
+        {%- comment -%}
+          A video post leads with the video. YouTube and Vimeo get a real
+          embed; anything else falls back to a plain link, which is better
+          than an iframe that may refuse to load.
+        {%- endcomment -%}
+        {% if page.video %}
+            {% assign v = page.video %}
+            {% assign yt_id = "" %}
+
+            {% if v contains "youtube.com/watch?v=" %}
+                {% assign yt_id = v | split: "v=" | last | split: "&" | first %}
+            {% elsif v contains "youtu.be/" %}
+                {% assign yt_id = v | split: "youtu.be/" | last | split: "?" | first %}
+            {% endif %}
+
+            {% if yt_id != "" %}
+                <div class="post__video">
+                    <iframe src="https://www.youtube-nocookie.com/embed/{{ yt_id }}"
+                            title="{{ page.title | escape }}"
+                            loading="lazy" allowfullscreen
+                            allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture"></iframe>
+                </div>
+            {% elsif v contains "vimeo.com/" %}
+                {% assign vimeo_id = v | split: "vimeo.com/" | last | split: "?" | first %}
+                <div class="post__video">
+                    <iframe src="https://player.vimeo.com/video/{{ vimeo_id }}"
+                            title="{{ page.title | escape }}"
+                            loading="lazy" allowfullscreen></iframe>
+                </div>
+            {% else %}
+                <p class="post__video-link">
+                    <a class="button button--flex" href="{{ v }}" target="_blank" rel="noopener">
+                        Watch the video <i class="uil uil-external-link-alt button__icon"></i>
+                    </a>
+                </p>
+            {% endif %}
+        {% elsif page.image %}
             <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }}" class="post__cover">
         {% endif %}
 
