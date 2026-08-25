@@ -1,0 +1,88 @@
+# Decap CMS configuration.
+# The editor lives at /admin/ and commits straight back into this repository,
+# which is what makes the site rebuild and publish itself.
+#
+# SETUP: `base_url` below must point at an OAuth helper before login works.
+# See docs/CMS-SETUP.md — it is a one-time, ten-minute, no-cost step.
+
+backend:
+  name: github
+  repo: muhahmmaad/muhahmmaad.github.io
+  branch: main
+  # Replace with your deployed Cloudflare Worker URL (no trailing slash):
+  base_url: https://REPLACE-ME.workers.dev
+
+# Keep drafts in the CMS instead of publishing straight to the live site.
+publish_mode: editorial_workflow
+
+# Where drag-and-dropped images land.
+media_folder: assets/img/uploads
+public_folder: /assets/img/uploads
+
+site_url: https://muhahmmaad.github.io
+display_url: https://muhahmmaad.github.io
+logo_url: https://muhahmmaad.github.io/assets/img/favicon.svg
+
+collections:
+  - name: posts
+    label: Blog posts
+    label_singular: Blog post
+    description: >-
+      Write a post, drop in a cover image, hit Publish. The site rebuilds
+      itself within a minute or two.
+    folder: _posts
+    create: true
+    # Jekyll requires the date prefix in the filename.
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    summary: "{{title}}"
+    sortable_fields: [date, title]
+    view_filters:
+      - label: Influencer Marketing
+        field: category
+        pattern: Influencer Marketing
+      - label: Social Media
+        field: category
+        pattern: Social Media
+      - label: Research
+        field: category
+        pattern: Research
+    fields:
+      - label: Title
+        name: title
+        widget: string
+        hint: Shown on the card and at the top of the post.
+
+      - label: Date
+        name: date
+        widget: datetime
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        hint: Posts are listed newest first. A future date hides the post until then.
+
+      - label: Short description
+        name: description
+        widget: text
+        required: false
+        hint: One or two sentences. Used on the blog card and in Google results.
+
+      - label: Category
+        name: category
+        widget: select
+        required: false
+        options:
+          - Influencer Marketing
+          - Social Media
+          - Research
+          - Marketing Strategy
+
+      - label: Cover image
+        name: image
+        widget: image
+        required: false
+        hint: Optional. Drag an image in, or leave blank to use a generated cover.
+
+      - label: Body
+        name: body
+        widget: markdown
+        hint: Use the toolbar for headings, bold, lists, links and inline images.

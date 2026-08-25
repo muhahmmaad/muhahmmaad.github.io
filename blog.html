@@ -1,0 +1,23 @@
+---
+layout: default
+title: Blog
+description: Notes on influencer marketing, social media strategy and marketing research by Muhammad Ahmad.
+permalink: /blog/
+---
+
+<section class="section blog-index">
+    <h2 class="section__title">Blog</h2>
+    <span class="section__subtitle">Notes on marketing &amp; research</span>
+
+    <div class="container">
+        {% if site.posts.size > 0 %}
+            <div class="post-grid">
+                {% for post in site.posts %}
+                    {% include post-card.html post=post %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="blog-index__empty">No posts yet — check back soon.</p>
+        {% endif %}
+    </div>
+</section>

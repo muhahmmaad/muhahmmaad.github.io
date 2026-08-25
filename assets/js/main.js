@@ -92,7 +92,7 @@ modalCloses.forEach((modalClose) => {
 })
 
 /*==================== PORTFOLIO SWIPER  ====================*/
-let swiperPortfolio = new Swiper('.portfolio__container', {
+let swiperPortfolio = document.querySelector('.portfolio__container') && new Swiper('.portfolio__container', {
     cssMode: true,
     loop: true,
 
@@ -107,7 +107,7 @@ let swiperPortfolio = new Swiper('.portfolio__container', {
 })
 
 /*==================== TESTIMONIAL ====================*/
-let swiperTestimonial = new Swiper('.testimonial__container', {
+let swiperTestimonial = document.querySelector('.testimonial__container') && new Swiper('.testimonial__container', {
     loop: true,
     grabCursor: true,
     spaceBetween: 48,
@@ -135,10 +135,13 @@ function scrollActive() {
         const sectionTop = current.offsetTop - 50
         sectionId = current.getAttribute('id')
 
+        const link = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+        if (!link) return
+
         if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.add('active-link')
+            link.classList.add('active-link')
         } else {
-            document.querySelector('.nav__menu a[href*=' + sectionId + ']').classList.remove('active-link')
+            link.classList.remove('active-link')
         }
     })
 }
@@ -181,7 +184,7 @@ if (selectedTheme) {
 }
 
 // Activate / deactivate the theme manually with the button
-themeButton.addEventListener('click', () => {
+if (themeButton) themeButton.addEventListener('click', () => {
     // Add or remove the dark / icon theme
     document.body.classList.toggle(darkTheme)
     themeButton.classList.toggle(iconTheme)
@@ -189,3 +192,50 @@ themeButton.addEventListener('click', () => {
     localStorage.setItem('selected-theme', getCurrentTheme())
     localStorage.setItem('selected-icon', getCurrentIcon())
 })
+
+/*==================== SCROLL REVEAL ====================*/
+/* Replaces the template's ScrollReveal dependency (GPL-3.0) with the platform
+   IntersectionObserver: same effect, no library, no licence question. */
+;(function () {
+    const targets = [
+        '.home__data', '.home__img', '.home__social', '.home__scroll',
+        '.about__img', '.about__data',
+        '.skills__content',
+        '.qualification__tabs', '.qualification__sections',
+        '.services__content',
+        '.portfolio__content',
+        '.project__data', '.project__img',
+        '.testimonial__content',
+        '.post-card',
+        '.insights__cta',
+        '.contact__information', '.contact__form',
+        '.post__header', '.post__cover', '.post__content'
+    ]
+
+    const nodes = document.querySelectorAll(targets.join(','))
+    if (!nodes.length) return
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+
+    // No observer support, or the visitor asked for less motion: show everything.
+    if (reduced || !('IntersectionObserver' in window)) {
+        nodes.forEach(n => n.classList.add('reveal', 'is-visible'))
+        return
+    }
+
+    nodes.forEach((node, i) => {
+        node.classList.add('reveal')
+        // Stagger siblings so grids cascade instead of popping in together.
+        node.style.transitionDelay = (i % 4) * 70 + 'ms'
+    })
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return
+            entry.target.classList.add('is-visible')
+            observer.unobserve(entry.target)   // reveal once, then stop watching
+        })
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' })
+
+    nodes.forEach(n => observer.observe(n))
+})()

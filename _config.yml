@@ -1,0 +1,42 @@
+title: Muhammad Ahmad
+tagline: Influencer Marketing Manager | SMME
+description: >-
+  Influencer Marketing Manager and Social Media Marketing Executive.
+  MPhil Business Administration, skilled in campaign strategy,
+  data analysis (SPSS, AMOS, SmartPLS) and content creation.
+
+url: "https://muhahmmaad.github.io"
+baseurl: ""
+
+author:
+  name: Muhammad Ahmad
+  email: muhahmmaad@gmail.com
+
+social:
+  github: https://github.com/muhahmmaad
+  linkedin: https://www.linkedin.com/in/muhahmmaad
+  instagram: https://www.instagram.com/muhahmmad
+  facebook: https://www.facebook.com/muhahmmaad
+
+# Where the contact form posts. Swap this if the host changes.
+contact_form_action: https://formsubmit.co/muhahmmaad@gmail.com
+
+markdown: kramdown
+permalink: /blog/:title/
+
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+# Show this many posts in the homepage "Insights" section
+homepage_post_count: 3
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - .DS_Store

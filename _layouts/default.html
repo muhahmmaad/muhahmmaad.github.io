@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% include head.html %}
+</head>
+<body>
+    {% include header.html %}
+
+    <main class="main">
+        {{ content }}
+    </main>
+
+    {% include footer.html %}
+
+    <!--==================== SCROLL TOP ====================-->
+    <a href="#" class="scrollup" id="scroll-up" aria-label="Back to top">
+        <i class="uil uil-arrow-up scrollup__icon"></i>
+    </a>
+
+    <!--==================== SWIPER JS ====================-->
+    <script src="{{ '/assets/js/swiper-bundle.min.js' | relative_url }}"></script>
+
+    <!--==================== MAIN JS ====================-->
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+</body>
+</html>

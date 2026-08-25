@@ -1290,3 +1290,549 @@ img {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/*==================== MODERN POLISH ====================*/
+/* Layered on top of the base template rather than rewritten into it, so the
+   original Bedimcode rules stay readable and easy to diff. */
+
+:root {
+    --shadow-sm: 0 1px 2px hsla(var(--hue-color), 20%, 20%, .06),
+                 0 2px 8px hsla(var(--hue-color), 20%, 20%, .06);
+    --shadow-md: 0 2px 4px hsla(var(--hue-color), 20%, 20%, .07),
+                 0 8px 24px hsla(var(--hue-color), 20%, 20%, .09);
+    --shadow-lg: 0 4px 8px hsla(var(--hue-color), 20%, 20%, .08),
+                 0 16px 40px hsla(var(--hue-color), 20%, 20%, .12);
+    --radius: 1rem;
+    --ease: cubic-bezier(.4, 0, .2, 1);
+    --surface: var(--container-color);
+    --border-color: hsla(var(--hue-color), 20%, 40%, .12);
+}
+
+body.dark-theme {
+    --shadow-sm: 0 1px 2px hsla(0, 0%, 0%, .3), 0 2px 8px hsla(0, 0%, 0%, .25);
+    --shadow-md: 0 2px 4px hsla(0, 0%, 0%, .35), 0 8px 24px hsla(0, 0%, 0%, .3);
+    --shadow-lg: 0 4px 8px hsla(0, 0%, 0%, .4), 0 16px 40px hsla(0, 0%, 0%, .38);
+    --border-color: hsla(var(--hue-color), 20%, 80%, .14);
+}
+
+/*========== Typography ==========*/
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.home__title,
+.section__title,
+.post__title {
+    letter-spacing: -.02em;
+}
+
+.section__title {
+    position: relative;
+}
+
+/* Gradient underline under each section heading */
+.section__title::after {
+    content: '';
+    display: block;
+    width: 44px;
+    height: 3px;
+    margin: .75rem auto 0;
+    border-radius: 3px;
+    background: linear-gradient(90deg,
+        var(--first-color),
+        hsl(calc(var(--hue-color) + 40), 69%, 61%));
+}
+
+/*========== Frosted sticky nav (desktop only) ==========*/
+@media screen and (min-width: 768px) {
+    .header {
+        background-color: hsla(var(--hue-color), 20%, 95%, .72);
+        -webkit-backdrop-filter: saturate(180%) blur(14px);
+        backdrop-filter: saturate(180%) blur(14px);
+        border-bottom: 1px solid transparent;
+        transition: border-color .3s var(--ease), background-color .3s var(--ease);
+    }
+
+    body.dark-theme .header {
+        background-color: hsla(var(--hue-color), 28%, 12%, .72);
+    }
+
+    /* main.js adds .scroll-header once the page moves */
+    .scroll-header {
+        box-shadow: none;
+        border-bottom-color: var(--border-color);
+    }
+}
+
+.nav__link {
+    transition: color .25s var(--ease);
+}
+
+/*========== Buttons ==========*/
+.button {
+    box-shadow: var(--shadow-sm);
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease),
+                background-color .25s var(--ease);
+}
+
+.button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.button:active {
+    transform: translateY(0);
+}
+
+.button--link,
+.button--link:hover {
+    box-shadow: none;
+    transform: none;
+}
+
+/*========== Cards ==========*/
+.services__content {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+
+.services__content:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+.services__modal-content {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+}
+
+.about__img,
+.portfolio__img {
+    box-shadow: var(--shadow-md);
+}
+
+/*========== Skill bars ==========*/
+.skills__percentage {
+    background: linear-gradient(90deg,
+        var(--first-color),
+        hsl(calc(var(--hue-color) + 40), 69%, 61%));
+    transition: width 1s var(--ease);
+}
+
+.skills__header {
+    border-radius: .75rem;
+    padding: .5rem;
+    margin-left: -.5rem;
+    transition: background-color .25s var(--ease);
+}
+
+.skills__header:hover {
+    background-color: hsla(var(--hue-color), 40%, 50%, .07);
+}
+
+/*========== Focus visibility ==========*/
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[role="button"]:focus-visible {
+    outline: 2px solid var(--first-color);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+
+/*==================== SCROLL REVEAL ====================*/
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity .7s var(--ease), transform .7s var(--ease);
+    will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+/* Never hide content from anyone who can't run the observer, or who asked
+   for less motion. */
+.no-js .reveal,
+.reveal.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    * {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+    }
+}
+
+/*==================== BLOG ====================*/
+.post-grid {
+    display: grid;
+    gap: 1.75rem;
+    grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 568px) {
+    .post-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (min-width: 968px) {
+    .post-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.post-card {
+    background-color: var(--surface);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: transform .3s var(--ease), box-shadow .3s var(--ease);
+}
+
+.post-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+.post-card__link {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: inherit;
+}
+
+.post-card__media {
+    position: relative;
+    /* 4:3 matches the generated SVG covers exactly, so their captions are
+       never cropped; photos of other ratios still crop sensibly. */
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    background-color: var(--first-color-lighter);
+}
+
+.post-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform .5s var(--ease);
+}
+
+.post-card:hover .post-card__img {
+    transform: scale(1.04);
+}
+
+.post-card__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 1.25rem;
+}
+
+.post-card__meta,
+.post__meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .4rem;
+    font-size: var(--smaller-font-size);
+    color: var(--text-color-light);
+    margin-bottom: var(--mb-0-5);
+}
+
+.post-card__dot {
+    opacity: .6;
+}
+
+/* Overlaid on the cover image */
+.post-card__tag {
+    position: absolute;
+    top: .75rem;
+    left: .75rem;
+    background-color: hsla(0, 0%, 100%, .92);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    color: var(--first-color);
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-medium);
+    padding: .2rem .65rem;
+    border-radius: 999px;
+    box-shadow: var(--shadow-sm);
+}
+
+/* In the post header there is no image to sit on, so return it to the flow. */
+.post__meta .post-card__tag {
+    position: static;
+    background-color: hsla(var(--hue-color), 60%, 55%, .12);
+    box-shadow: none;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+}
+
+.post-card__title {
+    font-size: var(--h3-font-size);
+    line-height: 1.35;
+    margin-bottom: var(--mb-0-5);
+    letter-spacing: -.01em;
+    /* Clamp so a long headline can't push every card to a different height */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: calc(2 * 1.35em);
+}
+
+.post-card__excerpt {
+    font-size: var(--small-font-size);
+    line-height: 1.55;
+    margin-bottom: var(--mb-1);
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.post-card__more {
+    color: var(--first-color);
+    font-size: var(--small-font-size);
+    font-weight: var(--font-medium);
+    margin-top: auto;
+}
+
+.post-card:hover .post-card__more .button__icon {
+    transform: translateX(.25rem);
+}
+
+.insights__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--mb-2-5);
+}
+
+.blog-index__empty {
+    text-align: center;
+    color: var(--text-color-light);
+}
+
+/*==================== SINGLE POST ====================*/
+.post__container {
+    max-width: 720px;
+}
+
+.post__back {
+    color: var(--first-color);
+    font-weight: var(--font-medium);
+    margin-bottom: var(--mb-1-5);
+}
+
+.post__back:hover .post__back-icon {
+    transform: translateX(-.25rem);
+}
+
+.post__back-icon {
+    margin-left: 0;
+    margin-right: var(--mb-0-25);
+}
+
+.post__title {
+    font-size: var(--big-font-size);
+    line-height: 1.2;
+    margin-bottom: var(--mb-0-75);
+}
+
+.post__standfirst {
+    font-size: var(--h3-font-size);
+    color: var(--text-color-light);
+    line-height: 1.6;
+}
+
+.post__cover {
+    width: 100%;
+    border-radius: var(--radius);
+    margin: var(--mb-2) 0;
+    box-shadow: var(--shadow-md);
+}
+
+.post__header {
+    margin-bottom: var(--mb-2);
+}
+
+.post__content {
+    line-height: 1.75;
+}
+
+.post__content > * + * {
+    margin-top: var(--mb-1-5);
+}
+
+.post__content h2 {
+    font-size: var(--h2-font-size);
+    margin-top: var(--mb-2-5);
+    letter-spacing: -.01em;
+}
+
+.post__content h3 {
+    font-size: var(--h3-font-size);
+    margin-top: var(--mb-2);
+}
+
+.post__content a {
+    color: var(--first-color);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.post__content ul,
+.post__content ol {
+    padding-left: 1.25rem;
+}
+
+.post__content ul {
+    list-style: disc;
+}
+
+.post__content ol {
+    list-style: decimal;
+}
+
+.post__content li + li {
+    margin-top: .5rem;
+}
+
+.post__content strong {
+    color: var(--title-color);
+}
+
+.post__content blockquote {
+    border-left: 3px solid var(--first-color);
+    padding-left: 1rem;
+    color: var(--text-color-light);
+    font-style: italic;
+}
+
+.post__content img {
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.post__content code {
+    background-color: var(--input-color);
+    padding: .15rem .4rem;
+    border-radius: .3rem;
+    font-size: var(--small-font-size);
+}
+
+.post__content pre {
+    background-color: var(--input-color);
+    padding: 1rem;
+    border-radius: .6rem;
+    overflow-x: auto;
+}
+
+.post__content pre code {
+    background: none;
+    padding: 0;
+}
+
+.post__footer {
+    margin-top: var(--mb-3);
+    padding-top: var(--mb-1-5);
+    border-top: 1px solid var(--border-color);
+}
+
+.post__share {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: var(--mb-2);
+}
+
+.post__share-label {
+    font-size: var(--small-font-size);
+    color: var(--text-color-light);
+}
+
+.post__share-link {
+    color: var(--first-color);
+    font-size: 1.25rem;
+    transition: transform .25s var(--ease);
+}
+
+.post__share-link:hover {
+    transform: translateY(-2px);
+}
+
+.post__nav {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+}
+
+@media screen and (min-width: 568px) {
+    .post__nav {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.post__nav-link {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    padding: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    background-color: var(--surface);
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+}
+
+.post__nav-link:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.post__nav-link--next {
+    text-align: right;
+}
+
+.post__nav-label {
+    font-size: var(--smaller-font-size);
+    color: var(--text-color-light);
+}
+
+.post__nav-title {
+    font-size: var(--small-font-size);
+    font-weight: var(--font-medium);
+    color: var(--title-color);
+}
+
+/* Blog pages have no hero, so keep content clear of the fixed desktop nav */
+@media screen and (min-width: 768px) {
+    .blog-index,
+    .post {
+        padding-top: 8rem;
+    }
+}
