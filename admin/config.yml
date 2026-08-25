@@ -12,6 +12,12 @@ backend:
   # Replace with your deployed Cloudflare Worker URL (no trailing slash):
   base_url: https://REPLACE-ME.workers.dev
 
+# Only takes effect when the site is opened on localhost, so it is safe to
+# commit. Lets you trial the editor before the OAuth helper exists:
+#   npx decap-server      (in one terminal, from the repo root)
+#   then open http://127.0.0.1:8899/admin/
+local_backend: true
+
 # Keep drafts in the CMS instead of publishing straight to the live site.
 publish_mode: editorial_workflow
 

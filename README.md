@@ -47,6 +47,38 @@ is closer to how GitHub Pages serves it.
 
 ## Deploying
 
-Pushing to the `main` branch of the `muhahmmaad/muhahmmaad.github.io`
-repository publishes to https://muhahmmaad.github.io (Settings → Pages →
-Source: *Deploy from a branch* → `main` / `root`).
+See **[docs/DEPLOY.md](docs/DEPLOY.md)** — must be done from the `muhahmmaad`
+GitHub account, since the URL is derived from the account name.
+
+The site builds with GitHub Actions (`.github/workflows/pages.yml`) so the
+deployed Jekyll matches the pinned version in the `Gemfile`, rather than the
+older Jekyll that GitHub Pages ships by default.
+
+## Writing blog posts
+
+Posts are markdown files in `_posts/`, named `YYYY-MM-DD-slug.md`.
+
+There is a no-code editor at **`/admin/`** (Decap CMS) with fields for title,
+date, category, cover image and a rich-text body. Turning it on requires a
+one-time OAuth setup — see **[docs/CMS-SETUP.md](docs/CMS-SETUP.md)**.
+
+To trial the editor locally without any of that:
+
+```bash
+npx decap-server          # terminal 1
+bundle exec jekyll serve  # terminal 2
+# open http://127.0.0.1:4000/admin/
+```
+
+Front matter a post understands:
+
+```yaml
+---
+title: "Post title"
+description: "One or two sentences, used on the card and in search results."
+category: Influencer Marketing   # or Social Media, Research, Marketing Strategy
+image: /assets/img/uploads/cover.jpg   # optional
+---
+```
+
+Leave `image` out and the card falls back to one of the generated covers.
