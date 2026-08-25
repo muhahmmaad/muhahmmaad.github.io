@@ -41,6 +41,11 @@ collections:
     # Jekyll requires the date prefix in the filename.
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     summary: "{{title}}"
+    # Gives each entry a "View on site" link once it is published, so a post
+    # can be checked without hunting for its URL. Must match the Jekyll
+    # permalink in _config.yml (/blog/:title/).
+    preview_path: "blog/{{fields.title}}"
+    preview_path_date_field: date
     sortable_fields: [date, title]
     fields:
       - label: Title

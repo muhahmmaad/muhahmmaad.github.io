@@ -1888,3 +1888,119 @@ textarea:focus-visible,
 .post-card[hidden] {
     display: none;
 }
+
+/*==================== INSTAGRAM-STYLE POST GRID ====================*/
+/* Square tiles, hairline gaps, image-first — the card chrome from .post-card
+   is deliberately stripped back here. Titles stay visible over a scrim rather
+   than only on hover, because hover does not exist on touch and a blog needs
+   its headlines readable. */
+.post-grid--gram {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+}
+
+.post-grid--gram .post-card {
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: hidden;
+}
+
+.post-grid--gram .post-card:hover {
+    transform: none;
+    box-shadow: none;
+}
+
+.post-grid--gram .post-card__link {
+    position: relative;
+    display: block;
+    aspect-ratio: 1 / 1;
+    height: auto;
+}
+
+.post-grid--gram .post-card__media {
+    position: absolute;
+    inset: 0;
+    aspect-ratio: auto;
+    border-radius: 0;
+}
+
+.post-grid--gram .post-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post-grid--gram .post-card:hover .post-card__img {
+    transform: scale(1.06);
+}
+
+/* Category chip rides on the tile, as before, just tighter. */
+.post-grid--gram .post-card__tag {
+    top: .5rem;
+    left: .5rem;
+    font-size: var(--smaller-font-size);
+    padding: .15rem .5rem;
+    z-index: 2;
+}
+
+.post-grid--gram .post-card__body {
+    position: absolute;
+    inset: auto 0 0 0;
+    display: block;
+    padding: 2.5rem .75rem .75rem;
+    background: linear-gradient(to top,
+        hsla(var(--hue-color), 40%, 8%, .88) 0%,
+        hsla(var(--hue-color), 40%, 8%, .55) 45%,
+        hsla(var(--hue-color), 40%, 8%, 0) 100%);
+    z-index: 1;
+}
+
+.post-grid--gram .post-card__title {
+    color: #FFF;
+    font-size: var(--normal-font-size);
+    line-height: 1.3;
+    margin-bottom: .15rem;
+    min-height: 0;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+
+.post-grid--gram .post-card__meta {
+    color: hsla(0, 0%, 100%, .8);
+    margin-bottom: 0;
+    font-size: var(--smaller-font-size);
+}
+
+/* Excerpt and the Read more affordance are noise at this size. */
+.post-grid--gram .post-card__excerpt,
+.post-grid--gram .post-card__more {
+    display: none;
+}
+
+/* Instagram keeps three columns even on a phone, but a headline needs room,
+   so drop to two below the tablet breakpoint. */
+@media screen and (max-width: 567px) {
+    .post-grid--gram {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2px;
+    }
+
+    .post-grid--gram .post-card__title {
+        font-size: var(--small-font-size);
+    }
+
+    .post-grid--gram .post-card__meta {
+        display: none;
+    }
+}
+
+/* Let the grid run edge to edge like a profile page. */
+@media screen and (min-width: 768px) {
+    .blog-index .container:has(.post-grid--gram),
+    .insights__container:has(.post-grid--gram) {
+        max-width: 935px;
+    }
+}

@@ -31,7 +31,7 @@ permalink: /blog/
                 </div>
             {% endif %}
 
-            <div class="post-grid" id="post-grid">
+            <div class="post-grid post-grid--gram" id="post-grid">
                 {% for post in site.posts %}
                     {% include post-card.html post=post index=forloop.index0 %}
                 {% endfor %}

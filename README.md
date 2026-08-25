@@ -73,9 +73,14 @@ To trial it locally without any of that:
 
 ```bash
 npx decap-server          # terminal 1
-bundle exec jekyll serve  # terminal 2
+bundle exec jekyll serve  # terminal 2 — must be `serve`, not `build`
 # open http://127.0.0.1:4000/admin/
 ```
+
+Use `jekyll serve`, which watches for changes. Serving a previously built
+`_site/` folder will not show new posts: the CMS writes into `_posts/`, and
+nothing regenerates the site until Jekyll runs again. On the deployed site
+this cannot happen, because every commit triggers a rebuild.
 
 **3. Write the file directly.**
 Posts are markdown in `_posts/`, named `YYYY-MM-DD-slug.md`:
