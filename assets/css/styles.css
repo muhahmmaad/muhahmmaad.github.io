@@ -18,8 +18,10 @@
     --text-color: hsl(var(--hue-color), 8%, 45%);
     --text-color-light: hsl(var(--hue-color), 8%, 65%);
     --input-color: hsl(var(--hue-color), 70%, 96%);
-    --body-color: hsl(var(--hue-color), 60%, 99%);
+    --body-color: hsl(var(--hue-color), 20%, 95%);
     --container-color: #FFF;
+    /* Blob behind the home photo — white so it reads against the grey body */
+    --blob-color: #FFF;
     --scroll-bar-color: hsl(var(--hue-color), 12%, 90%);
     --scroll-thumb-color: hsl(var(--hue-color), 12%, 80%);
 
@@ -297,7 +299,7 @@ img {
 
 .home__blob {
     width: 200px;
-    fill: var(--first-color);
+    fill: var(--blob-color);
 }
 
 .home__blob-img {
