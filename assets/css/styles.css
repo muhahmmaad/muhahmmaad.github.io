@@ -1169,11 +1169,11 @@ img {
     }
 
     .qualification__sections {
-        grid-template-columns: .75fr;
+        grid-template-columns: .5fr;
     }
 
     .services__container {
-        grid-template-columns: repeat(2, 218px);
+        grid-template-columns: repeat(3, 218px);
         justify-content: center;
     }
 
@@ -1256,7 +1256,7 @@ img {
     }
 
     .services__container {
-        grid-template-columns: repeat(2, 238px);
+        grid-template-columns: repeat(3, 238px);
     }
 
     .portfolio__content {
