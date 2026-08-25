@@ -5,6 +5,10 @@ This folder is your finished portfolio site. It just needs publishing.
 **You do not need to install Ruby, Jekyll, or Node.** The site is built on
 GitHub's own servers. All your laptop needs is `git`.
 
+> **Handing this to an AI assistant instead?** Give it
+> [AI-AGENT-INSTRUCTIONS.md](AI-AGENT-INSTRUCTIONS.md) — it has the full
+> runbook plus the traps that are easy to hit.
+
 ---
 
 ## 1. Check git is installed
