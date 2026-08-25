@@ -58,6 +58,33 @@ function yamlString(value) {
   return '"' + String(value).replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
 }
 
+/** Placeholder the dropdown shows when nothing has been chosen. */
+const CATEGORY_PLACEHOLDER = /^[—-]\s*pick one/i;
+
+/**
+ * A typed-in category wins over the dropdown, so a new one can be invented
+ * without waiting for the dropdown to catch up.
+ */
+function resolveCategory(fields) {
+  const typed = (fields['Or a new category'] || '').trim();
+  const picked = (fields['Category'] || '').trim();
+
+  const chosen = typed || (CATEGORY_PLACEHOLDER.test(picked) ? '' : picked);
+  if (!chosen) return '';
+
+  // Free text lands in YAML front matter, so keep it to something tame:
+  // one line, no control characters, reasonable length.
+  const cleaned = chosen
+    .replace(/[\r\n\t]+/g, ' ')
+    .replace(/["'`\\]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 40)
+    .trim();
+
+  return cleaned;
+}
+
 function isValidDate(s) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(s)) return false;
   const d = new Date(s + 'T00:00:00Z');
@@ -85,8 +112,8 @@ function buildPost(fields, today) {
   const description = (fields['Short description'] || '').trim();
   if (description) front.push(`description: ${yamlString(description)}`);
 
-  const category = (fields['Category'] || '').trim();
-  if (category) front.push(`category: ${category}`);
+  const category = resolveCategory(fields);
+  if (category) front.push(`category: ${yamlString(category)}`);
 
   const cover = (fields['Cover image link'] || '').trim();
   // Only accept a plain http(s) URL or a site-relative path — never arbitrary
@@ -103,7 +130,7 @@ function buildPost(fields, today) {
   };
 }
 
-module.exports = { parseIssueForm, slugify, buildPost, yamlString, isValidDate };
+module.exports = { parseIssueForm, slugify, buildPost, yamlString, isValidDate, resolveCategory };
 
 // ---------------------------------------------------------------------------
 // CLI

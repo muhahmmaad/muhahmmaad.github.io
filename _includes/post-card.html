@@ -12,7 +12,7 @@
 {%- assign fallback = include.index | default: 0 | modulo: 4 -%}
 {%- assign cat = post.category | default: post.categories.first -%}
 
-<article class="post-card">
+<article class="post-card" data-category="{{ cat | slugify }}">
     <a class="post-card__link" href="{{ post.url | relative_url }}">
         <div class="post-card__media">
             {% if post.image %}

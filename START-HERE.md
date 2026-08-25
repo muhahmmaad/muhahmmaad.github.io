@@ -79,7 +79,9 @@ Everything happens on github.com. Nothing to install, nothing to sign up for.
 2. Click **New issue** → **New blog post** → *Get started*
 3. Fill in the form:
    - **Title**
-   - **Category** (dropdown)
+   - **Category** — pick from the dropdown, or type a brand new one in the
+     *"Or a new category"* box. Anything you invent is added to the dropdown
+     for next time, and gets its own filter button on the blog page.
    - **Short description** — a sentence or two
    - **Post** — write normally. Blank line between paragraphs. Start a line
      with `## ` for a heading, `- ` for a bullet.

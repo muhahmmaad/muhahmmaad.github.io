@@ -21,17 +21,32 @@ body:
     validations:
       required: true
 
+  # The options below are refreshed automatically after each post is
+  # published — see .github/scripts/refresh-category-options.js
   - type: dropdown
     id: category
     attributes:
       label: Category
+      description: Pick one, or leave this and type a new one in the next box.
       options:
-        - Influencer Marketing
-        - Social Media
-        - Research
-        - Marketing Strategy
+        - '— pick one, or add a new one below —'
+        - 'Influencer Marketing'
+        - 'Research'
+        - 'Social Media'
     validations:
-      required: true
+      required: false
+
+  - type: input
+    id: new_category
+    attributes:
+      label: Or a new category
+      description: >-
+        Type anything here to create a category that does not exist yet. It
+        will be added to the dropdown above for next time. Leave blank to use
+        the dropdown.
+      placeholder: Content Strategy
+    validations:
+      required: false
 
   - type: textarea
     id: description

@@ -5,17 +5,41 @@ description: Notes on influencer marketing, social media strategy and marketing 
 permalink: /blog/
 ---
 
+{%- comment -%}
+  Categories are whatever the posts happen to use, so the filter list is built
+  from the posts themselves rather than a fixed list somewhere.
+{%- endcomment -%}
+{%- assign categories = site.posts | map: 'category' | compact | uniq | sort -%}
+
 <section class="section blog-index">
     <h2 class="section__title">Blog</h2>
     <span class="section__subtitle">Notes on marketing &amp; research</span>
 
     <div class="container">
         {% if site.posts.size > 0 %}
-            <div class="post-grid">
+            {% if categories.size > 1 %}
+                <div class="blog-filter" id="blog-filter">
+                    <button type="button" class="blog-filter__chip is-active" data-filter="all">
+                        All <span class="blog-filter__count">{{ site.posts.size }}</span>
+                    </button>
+                    {% for category in categories %}
+                        {% assign in_category = site.posts | where: 'category', category %}
+                        <button type="button" class="blog-filter__chip" data-filter="{{ category | slugify }}">
+                            {{ category }} <span class="blog-filter__count">{{ in_category.size }}</span>
+                        </button>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <div class="post-grid" id="post-grid">
                 {% for post in site.posts %}
                     {% include post-card.html post=post index=forloop.index0 %}
                 {% endfor %}
             </div>
+
+            <p class="blog-index__empty" id="blog-no-match" hidden>
+                Nothing in that category yet.
+            </p>
         {% else %}
             <p class="blog-index__empty">No posts yet — check back soon.</p>
         {% endif %}

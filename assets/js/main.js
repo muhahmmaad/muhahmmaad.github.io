@@ -239,3 +239,35 @@ if (themeButton) themeButton.addEventListener('click', () => {
 
     nodes.forEach(n => observer.observe(n))
 })()
+
+/*==================== BLOG CATEGORY FILTER ====================*/
+/* Filters client-side. Categories are free text, so there is no fixed list
+   here — the chips are rendered from the posts and matched on a data attribute. */
+;(function () {
+    const filter = document.getElementById('blog-filter')
+    const grid = document.getElementById('post-grid')
+    if (!filter || !grid) return
+
+    const chips = filter.querySelectorAll('.blog-filter__chip')
+    const cards = grid.querySelectorAll('.post-card')
+    const empty = document.getElementById('blog-no-match')
+
+    function apply(wanted) {
+        let shown = 0
+
+        cards.forEach(card => {
+            const match = wanted === 'all' || card.dataset.category === wanted
+            card.hidden = !match
+            if (match) shown++
+        })
+
+        if (empty) empty.hidden = shown > 0
+    }
+
+    chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            chips.forEach(c => c.classList.toggle('is-active', c === chip))
+            apply(chip.dataset.filter)
+        })
+    })
+})()
