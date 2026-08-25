@@ -56,13 +56,20 @@ older Jekyll that GitHub Pages ships by default.
 
 ## Writing blog posts
 
-Posts are markdown files in `_posts/`, named `YYYY-MM-DD-slug.md`.
+Three ways, in order of how little setup they need.
 
-There is a no-code editor at **`/admin/`** (Decap CMS) with fields for title,
-date, category, cover image and a rich-text body. Turning it on requires a
-one-time OAuth setup — see **[docs/CMS-SETUP.md](docs/CMS-SETUP.md)**.
+**1. GitHub issue form — no setup at all.**
+Issues tab → *New issue* → **New blog post** → fill in → *Create*.
+`.github/workflows/publish-post.yml` converts it into a file in `_posts/` and
+the site rebuilds. Restricted to the repository owner, since otherwise anyone
+opening an issue could publish to the site.
 
-To trial the editor locally without any of that:
+**2. The `/admin/` dashboard — nicer, needs one-time setup.**
+Decap CMS with a rich-text editor and drag-and-drop images. Requires a free
+OAuth helper because GitHub Pages cannot run server code —
+see **[docs/CMS-SETUP.md](docs/CMS-SETUP.md)**.
+
+To trial it locally without any of that:
 
 ```bash
 npx decap-server          # terminal 1
@@ -70,7 +77,8 @@ bundle exec jekyll serve  # terminal 2
 # open http://127.0.0.1:4000/admin/
 ```
 
-Front matter a post understands:
+**3. Write the file directly.**
+Posts are markdown in `_posts/`, named `YYYY-MM-DD-slug.md`:
 
 ```yaml
 ---
@@ -81,4 +89,5 @@ image: /assets/img/uploads/cover.jpg   # optional
 ---
 ```
 
-Leave `image` out and the card falls back to one of the generated covers.
+Leave `image` out and the card falls back to one of the generated covers,
+rotating by position so neighbouring cards differ.

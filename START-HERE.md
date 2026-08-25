@@ -56,32 +56,50 @@ GitHub will ask you to sign in. A browser window opens — approve it there.
 > `brew install gh`, run `gh auth login`, choose **Login with a web browser**,
 > then run the `git push` again.
 
-## 5. Turn on GitHub Pages
+## 5. Wait a minute
 
-In the browser, on your new repository:
-
-**Settings** → **Pages** → under *Build and deployment* set
-**Source** to **GitHub Actions**.
-
-## 6. Wait a minute
-
-Go to the **Actions** tab. A workflow runs for about a minute. When it shows a
-green tick, your site is live:
+Go to the **Actions** tab on your repository. A workflow runs for about a
+minute and switches on GitHub Pages by itself. When it shows a green tick,
+your site is live:
 
 ### https://muhahmmaad.github.io
 
+> **If the workflow fails** with a message about Pages not being enabled, set
+> it by hand once: **Settings** → **Pages** → *Build and deployment* →
+> **Source** → **GitHub Actions**. Then go to **Actions**, open the failed
+> run, and click **Re-run all jobs**.
+
 ---
 
-## Then: the blog editor
+## Writing a blog post — no code, no extra services
 
-Your site has a writing dashboard at `/admin/` — you can add blog posts with a
-normal editor (title, cover image drag-and-drop, rich text), no code.
+Everything happens on github.com. Nothing to install, nothing to sign up for.
 
-It needs one more setup step, about 10 minutes and free. Follow
-**[docs/CMS-SETUP.md](docs/CMS-SETUP.md)**.
+1. Go to your repository → the **Issues** tab
+2. Click **New issue** → **New blog post** → *Get started*
+3. Fill in the form:
+   - **Title**
+   - **Category** (dropdown)
+   - **Short description** — a sentence or two
+   - **Post** — write normally. Blank line between paragraphs. Start a line
+     with `## ` for a heading, `- ` for a bullet.
+   - **Cover image** — optional. Drag a picture into the *Post* box, GitHub
+     uploads it and gives you a link; paste that link into the Cover field.
+4. Click **Create**
 
-Until then you can still add posts by creating markdown files in the `_posts/`
-folder directly on github.com.
+That's it. Within a minute or two the post is live on the site, and the issue
+closes itself with a confirmation comment.
+
+If something was wrong (empty title, bad date), the issue stays open and tells
+you what to fix — edit the issue and it tries again.
+
+**To change a published post**, edit its file in the `_posts/` folder on
+github.com and commit. **To delete one**, delete the file.
+
+> There is also a fuller editor at `/admin/` with a rich-text toolbar and
+> drag-and-drop images. It is nicer to use, but it needs a free external login
+> helper set up first — see [docs/CMS-SETUP.md](docs/CMS-SETUP.md). The issue
+> form above needs none of that, so start there.
 
 ---
 

@@ -1,0 +1,81 @@
+name: New blog post
+description: Write a post. Submitting this publishes it to the site.
+title: "[post] "
+labels: ["blog-post"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill this in and press **Create**. A minute later the post is live on
+        the site and this form closes itself.
+
+        To add pictures, drag them straight into the **Post** box below —
+        GitHub uploads them and inserts the link for you.
+
+  - type: input
+    id: post_title
+    attributes:
+      label: Title
+      description: Shown on the blog card and at the top of the post.
+      placeholder: What Makes an Influencer Campaign Work
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: Category
+      options:
+        - Influencer Marketing
+        - Social Media
+        - Research
+        - Marketing Strategy
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Short description
+      description: One or two sentences. Appears on the card and in Google results.
+      placeholder: Reach is the easiest number to buy and the least useful one to report.
+    validations:
+      required: true
+
+  - type: input
+    id: cover
+    attributes:
+      label: Cover image link
+      description: >-
+        Optional. Drag an image into the Post box below, then copy the link it
+        creates and paste it here. Leave blank to use a generated cover.
+      placeholder: https://github.com/user-attachments/assets/...
+    validations:
+      required: false
+
+  - type: textarea
+    id: body
+    attributes:
+      label: Post
+      description: >-
+        Write normally. Blank line between paragraphs. Start a line with "## "
+        to make a heading, and "- " to make a bullet.
+      placeholder: |
+        Most briefs I receive open with a follower count.
+
+        ## Fit beats size
+
+        A creator with 15,000 engaged followers will often outperform...
+    validations:
+      required: true
+
+  - type: input
+    id: date
+    attributes:
+      label: Publish date
+      description: >-
+        Optional. Leave blank for today. A future date keeps the post hidden
+        until then. Format YYYY-MM-DD.
+      placeholder: 2026-09-01
+    validations:
+      required: false

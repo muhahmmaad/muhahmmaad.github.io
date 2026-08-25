@@ -737,7 +737,7 @@ layout: default
         <div class="insights__container container">
             <div class="post-grid">
                 {% for post in site.posts limit: site.homepage_post_count %}
-                    {% include post-card.html post=post %}
+                    {% include post-card.html post=post index=forloop.index0 %}
                 {% endfor %}
             </div>
 

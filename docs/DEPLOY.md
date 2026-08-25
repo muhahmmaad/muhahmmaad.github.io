@@ -40,19 +40,19 @@ gh repo create muhahmmaad/muhahmmaad.github.io \
   --public --source=. --remote=origin --push
 ```
 
-## Step 3 — Turn on Pages
+## Step 3 — Pages turns itself on
 
-This site builds with GitHub Actions (so the deployed Jekyll matches the
-version it was tested on), which means Pages must be told to use Actions
-rather than a branch:
+Nothing to do here normally: the workflow calls `configure-pages` with
+`enablement: true`, which switches Pages into GitHub Actions mode on the first
+run.
+
+If that run fails because Pages is not enabled (some accounts restrict it),
+enable it once by hand and re-run:
 
 ```bash
-gh api -X POST repos/muhahmmaad/muhahmmaad.github.io/pages \
-  -f build_type=workflow
+gh api -X POST repos/muhahmmaad/muhahmmaad.github.io/pages -f build_type=workflow
+gh run rerun --failed
 ```
-
-If that errors, do it by hand instead: **Settings → Pages → Build and
-deployment → Source → GitHub Actions**.
 
 ## Step 4 — Watch it deploy
 

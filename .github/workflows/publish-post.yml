@@ -1,0 +1,70 @@
+# Turns a "New blog post" issue into a committed post file.
+# Pushing that file triggers pages.yml, which rebuilds and publishes the site.
+name: Publish blog post from issue
+
+on:
+  issues:
+    types: [opened, edited]
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: publish-post-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    # Only the repo owner may publish this way. Without this check, anyone who
+    # can open an issue could commit content to the site.
+    if: >-
+      contains(github.event.issue.labels.*.name, 'blog-post') &&
+      github.event.issue.user.login == github.repository_owner
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build post file from the issue
+        id: build
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: node .github/scripts/issue-to-post.js
+
+      - name: Commit it
+        id: commit
+        run: |
+          git config user.name "${{ github.event.issue.user.login }}"
+          git config user.email "${{ github.event.issue.user.id }}+${{ github.event.issue.user.login }}@users.noreply.github.com"
+          git add "${{ steps.build.outputs.path }}"
+
+          if git diff --staged --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "Post is unchanged; nothing to commit."
+          else
+            git commit -m "Add post: ${{ steps.build.outputs.slug }} (closes #${{ github.event.issue.number }})"
+            git push
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Say it worked and close the issue
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue comment "${{ github.event.issue.number }}" --body \
+            "Published. It will appear at https://${{ github.repository_owner }}.github.io/blog/ in a minute or two.
+
+          To change it later, edit \`${{ steps.build.outputs.path }}\` in the repository."
+          gh issue close "${{ github.event.issue.number }}"
+
+      - name: Report a failure on the issue
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh issue comment "${{ github.event.issue.number }}" --body \
+            "That didn't publish. Check the [run log](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) — usually it means Title or Post was left empty, or the date wasn't in YYYY-MM-DD form.
+
+          Edit this issue to fix it and it will try again."

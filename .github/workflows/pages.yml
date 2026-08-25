@@ -29,7 +29,11 @@ jobs:
           ruby-version: "3.3"
           bundler-cache: true
 
+      # `enablement` switches Pages on in workflow mode by itself, so a first
+      # push publishes without anyone visiting Settings -> Pages first.
       - uses: actions/configure-pages@v5
+        with:
+          enablement: true
 
       - name: Build site
         run: bundle exec jekyll build

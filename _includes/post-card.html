@@ -4,7 +4,12 @@
 {%- endcomment -%}
 {%- assign post = include.post -%}
 {%- assign covers = "research1.svg,research2.svg,research3.svg,research4.svg" | split: "," -%}
-{%- assign fallback = post.title | size | modulo: 4 -%}
+{%- comment -%}
+  Cover fallback rotates by position in the list, so neighbouring cards never
+  land on the same artwork. Hashing the title looked fine until two titles
+  happened to be the same length.
+{%- endcomment -%}
+{%- assign fallback = include.index | default: 0 | modulo: 4 -%}
 {%- assign cat = post.category | default: post.categories.first -%}
 
 <article class="post-card">
