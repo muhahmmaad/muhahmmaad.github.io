@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="Digital Banking research">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#8B7BF0"/><stop offset="100%" stop-color="#5B45C9"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="18" fill="url(#g1)"/>
+  <circle cx="345" cy="55" r="70" fill="#fff" opacity=".07"/>
+  <circle cx="60" cy="255" r="52" fill="#fff" opacity=".06"/>
+  <g fill="#fff">
+    <rect x="96" y="86" width="208" height="128" rx="12" opacity=".16"/>
+    <rect x="116" y="160" width="26" height="38" rx="5" opacity=".95"/>
+    <rect x="154" y="138" width="26" height="60" rx="5" opacity=".95"/>
+    <rect x="192" y="150" width="26" height="48" rx="5" opacity=".95"/>
+    <rect x="230" y="118" width="26" height="80" rx="5" opacity=".95"/>
+    <rect x="268" y="132" width="26" height="66" rx="5" opacity=".95"/>
+    <rect x="116" y="106" width="80" height="8" rx="4" opacity=".8"/>
+    <rect x="116" y="122" width="48" height="6" rx="3" opacity=".5"/>
+  </g>
+  <text x="200" y="253" font-family="Poppins,Segoe UI,sans-serif" font-size="17" font-weight="600" fill="#fff" text-anchor="middle">Digital Banking</text>
+  <text x="200" y="274" font-family="Poppins,Segoe UI,sans-serif" font-size="12" fill="#fff" opacity=".75" text-anchor="middle">Bank of Punjab · Research Methodology</text>
+</svg>

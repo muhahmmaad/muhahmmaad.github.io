@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="400" height="300" role="img" aria-label="AI chatbots research">
+  <defs>
+    <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#9B7BEF"/><stop offset="100%" stop-color="#6540C0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" rx="18" fill="url(#g3)"/>
+  <circle cx="340" cy="60" r="66" fill="#fff" opacity=".07"/>
+  <circle cx="56" cy="240" r="48" fill="#fff" opacity=".06"/>
+  <g fill="#fff">
+    <path d="M96 84 h150 a14 14 0 0 1 14 14 v52 a14 14 0 0 1 -14 14 h-108 l-30 24 v-24 h-12 a14 14 0 0 1 -14 -14 v-52 a14 14 0 0 1 14 -14 z" opacity=".95"/>
+    <path d="M186 140 h118 a14 14 0 0 1 14 14 v44 a14 14 0 0 1 -14 14 h-14 v20 l-26 -20 h-78 a14 14 0 0 1 -14 -14 v-44 a14 14 0 0 1 14 -14 z" opacity=".45"/>
+  </g>
+  <g fill="#6540C0">
+    <circle cx="134" cy="124" r="7"/><circle cx="164" cy="124" r="7"/><circle cx="194" cy="124" r="7"/>
+  </g>
+  <text x="200" y="288" font-family="Poppins,Segoe UI,sans-serif" font-size="13" font-weight="600" fill="#fff" text-anchor="middle" opacity=".9">AI Chatbots &amp; Purchase Intention</text>
+</svg>

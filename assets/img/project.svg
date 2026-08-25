@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 220" width="260" height="220" role="img" aria-label="Start a campaign">
+  <g fill="#fff">
+    <rect x="34" y="28" width="150" height="112" rx="12" opacity=".18"/>
+    <rect x="34" y="28" width="150" height="24" rx="12" opacity=".28"/>
+    <circle cx="50" cy="40" r="4" opacity=".9"/><circle cx="64" cy="40" r="4" opacity=".6"/><circle cx="78" cy="40" r="4" opacity=".4"/>
+    <rect x="50" y="68" width="60" height="8" rx="4" opacity=".85"/>
+    <rect x="50" y="84" width="98" height="6" rx="3" opacity=".5"/>
+    <rect x="50" y="98" width="82" height="6" rx="3" opacity=".5"/>
+    <rect x="50" y="114" width="52" height="12" rx="6" opacity=".95"/>
+  </g>
+  <g fill="#fff">
+    <circle cx="196" cy="112" r="34" opacity=".95"/>
+    <path d="M186 100 l24 12 -24 12 z" fill="#5B45C9"/>
+  </g>
+  <g stroke="#fff" stroke-width="3" opacity=".55" fill="none" stroke-linecap="round">
+    <path d="M60 172 q40 -26 80 0 t80 -14"/>
+  </g>
+  <g fill="#fff" opacity=".75">
+    <circle cx="60" cy="172" r="6"/><circle cx="140" cy="172" r="6"/><circle cx="220" cy="158" r="6"/>
+  </g>
+</svg>
