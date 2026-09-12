@@ -1,7 +1,7 @@
 name: Muhammad Ahmad 哈马迪
-short_name: Ahmad
 name_badge: /assets/img/verified-badge.png
-tagline: Kya haal Hai Bhai kasa hau
+tagline: "Social Media Marketing Manager | Video Editor | Cinematic Videographer
+  | Content Creator "
 description: Influencer Marketing Manager and Social Media Marketing Executive.
   MPhil Business Administration, skilled in campaign strategy, data analysis
   (SPSS, AMOS, SmartPLS) and content creation.
@@ -43,6 +43,7 @@ nav:
   - label: Contact
     href: "#contact"
     icon: uil uil-message
+short_name: Ahmad
 footer_links:
   - label: Services
     href: "#services"
