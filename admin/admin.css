@@ -130,6 +130,14 @@ textarea,
   padding-top: 8px !important;
 }
 
+[class*="ListItem"] {
+  background: #fff !important;
+}
+
+[class*="ListItem"] [class*="ControlContainer"] {
+  margin-top: 8px;
+}
+
 /* Crop widget */
 .crop-widget {
   background: #fcfbfe;

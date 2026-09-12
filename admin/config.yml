@@ -233,6 +233,7 @@ collections:
             widget: list
             collapsed: false
             minimize_collapsed: false
+            label_singular: Publication
             summary: "{{title}}"
             fields:
               - { label: Title, name: title, widget: string }
