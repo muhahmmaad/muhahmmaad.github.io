@@ -201,7 +201,7 @@ if (themeButton) themeButton.addEventListener('click', () => {
 ;(function () {
     const targets = [
         '.home__data', '.home__img', '.home__social', '.home__scroll',
-        '.about__img', '.about__data',
+        '.about__blob', '.about__data',
         '.skills__content',
         '.qualification__tabs', '.qualification__sections',
         '.services__content',

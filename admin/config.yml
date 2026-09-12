@@ -127,7 +127,7 @@ collections:
         fields:
           - { label: Title, name: title, widget: string }
           - { label: Subtitle, name: subtitle, widget: string }
-          - { label: Photo, name: image, widget: crop-image, aspect_ratio: "1/1", hint: Crop to a square that fits the About frame. }
+          - { label: Photo, name: image, widget: crop-image, aspect_ratio: "200/187", hint: Crop to fit the same blob frame as the home photo. }
           - { label: Description, name: description, widget: text }
           - label: Stats (the number boxes on About)
             name: stats
@@ -266,7 +266,7 @@ collections:
             fields:
               - { label: Name, name: name, widget: string }
               - { label: Role, name: role, widget: string }
-              - { label: Photo, name: image, widget: crop-image, required: false, aspect_ratio: "1/1" }
+              - { label: Photo, name: image, widget: crop-image, required: false, aspect_ratio: "200/187", hint: Same blob frame as the profile photos. }
               - { label: Quote, name: quote, widget: text }
 
       - name: insights

@@ -300,14 +300,13 @@ img {
     justify-self: center;
 }
 
-.home__blob {
-    width: 200px;
+.photo-blob {
     fill: var(--blob-color);
     display: block;
 }
 
-.home__blob-img {
-    /* Photo fills the existing blob frame; slice = cover, no stretch. */
+.home__blob {
+    width: 200px;
 }
 
 .home__data {
@@ -448,12 +447,8 @@ img {
 }
 
 /*==================== ABOUT ====================*/
-.about__img {
+.about__blob {
     width: min(200px, 70vw);
-    aspect-ratio: 1 / 1;
-    object-fit: cover;
-    object-position: center 18%;
-    border-radius: .5rem;
     justify-self: center;
     align-self: center;
 }
@@ -848,12 +843,9 @@ img {
     margin-bottom: var(--mb-1);
 }
 
-.testimonial__img {
-    width: 60px;
-    height: 60px;
-    object-fit: cover;
-    object-position: center;
-    border-radius: 50%;
+.testimonial__blob {
+    width: 64px;
+    flex-shrink: 0;
     margin-right: var(--mb-0-75);
 }
 
@@ -1081,7 +1073,7 @@ img {
         align-items: center;
     }
 
-    .testimonial__img {
+    .testimonial__blob {
         margin-right: 0;
         margin-bottom: var(--mb-0-25);
     }
@@ -1201,7 +1193,7 @@ img {
         column-gap: 5rem;
     }
 
-    .about__img {
+    .about__blob {
         width: min(350px, 100%);
     }
 
@@ -1464,7 +1456,6 @@ body {
     box-shadow: var(--shadow-lg);
 }
 
-.about__img,
 .portfolio__img {
     box-shadow: var(--shadow-md);
 }
@@ -2300,7 +2291,7 @@ select {
         width: min(200px, 70vw);
     }
 
-    .about__img {
+    .about__blob {
         width: min(200px, 70vw);
     }
 
