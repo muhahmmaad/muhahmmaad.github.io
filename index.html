@@ -398,6 +398,7 @@ layout: default
                 <input type="hidden" name="_template" value="table">
                 <input type="hidden" name="_subject" value="{{ contact.form_subject | default: 'New message from your portfolio' }}">
                 <input type="hidden" name="_next" value="{{ '/thanks/' | absolute_url }}">
+                <input type="hidden" name="_url" value="{{ '/' | absolute_url }}">
                 <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="contact__honey" aria-hidden="true">
 
                 {%- assign half_fields = contact.fields | where: 'half', true -%}
