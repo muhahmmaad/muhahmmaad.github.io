@@ -48,11 +48,14 @@
   var titleEl = overlay.querySelector(".quick-edit-drawer__title");
 
   function closeEditor() {
+    window.onbeforeunload = null;
+    try {
+      if (iframe.contentWindow) iframe.contentWindow.onbeforeunload = null;
+    } catch (err) {}
     overlay.classList.remove("is-open");
     document.body.classList.remove("quick-edit-open");
     iframe.src = "about:blank";
     if (window.refreshLiveContent) window.refreshLiveContent();
-    window.location.reload();
   }
 
   function openEditor(spec, label) {
