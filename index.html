@@ -38,7 +38,7 @@ layout: default
                 </div>
 
                 <div class="home__data">
-                    <h1 class="home__title">{{ home.title }}{% if identity.name_badge %} <img src="{{ identity.name_badge | relative_url }}" alt="" class="name-badge">{% endif %}</h1>
+                    <h1 class="home__title">{{ home.greeting | default: "Hi, I'm" }} {{ identity.name }}{% if identity.name_badge %} <img src="{{ identity.name_badge | relative_url }}" alt="" class="name-badge">{% endif %}</h1>
                     <h3 class="home__subtitle">{{ home.subtitle }}</h3>
                     <p class="home__description">{{ home.description }}</p>
                     <a href="{{ home.cta_link }}" class="button button--flex">

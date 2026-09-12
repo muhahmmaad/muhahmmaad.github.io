@@ -326,6 +326,10 @@ img {
     display: inline-flex;
     align-items: center;
     gap: .3rem;
+    max-width: min(70vw, 16rem);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .nav__logo .name-badge {

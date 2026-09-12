@@ -11,7 +11,7 @@
 
 <header class="header" id="header">
     <nav class="nav container">
-        <a href="{{ home }}" class="nav__logo">{{ site.data.identity.short_name | default: site.author.name }}{% if site.data.identity.name_badge %} <img src="{{ site.data.identity.name_badge | relative_url }}" alt="" class="name-badge">{% endif %}</a>
+        <a href="{{ home }}" class="nav__logo">{{ site.data.identity.name | default: site.data.identity.short_name }}{% if site.data.identity.name_badge %} <img src="{{ site.data.identity.name_badge | relative_url }}" alt="" class="name-badge">{% endif %}</a>
 
         <div class="nav__menu" id="nav-menu">
             <ul class="nav__list grid">

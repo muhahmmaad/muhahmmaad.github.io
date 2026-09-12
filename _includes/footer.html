@@ -9,7 +9,7 @@
     <div class="footer__bg">
         <div class="footer__container container grid">
             <div>
-                <h1 class="footer__title">{{ site.data.identity.short_name | default: site.author.name }}{% if site.data.identity.name_badge %} <img src="{{ site.data.identity.name_badge | relative_url }}" alt="" class="name-badge name-badge--footer">{% endif %}</h1>
+                <h1 class="footer__title">{{ site.data.identity.name | default: site.data.identity.short_name }}{% if site.data.identity.name_badge %} <img src="{{ site.data.identity.name_badge | relative_url }}" alt="" class="name-badge name-badge--footer">{% endif %}</h1>
                 <span class="footer__subtitle">{{ site.data.identity.tagline | default: site.tagline }}</span>
             </div>
 

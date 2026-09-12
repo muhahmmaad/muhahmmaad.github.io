@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex">
     <meta http-equiv="Cache-Control" content="no-store">
     <title>Content Manager | Muhammad Ahmad</title>
-    <link rel="stylesheet" href="admin.css?v=20260912d">
+    <link rel="stylesheet" href="admin.css?v=20260912e">
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
 </head>
 <body>
@@ -49,7 +49,7 @@
         if (errors.length) throw new Error(errors.join('\n'));
       }
 
-      fetch('config.yml?v=20260912d', { cache: 'no-store' })
+      fetch('config.yml?v=20260912e', { cache: 'no-store' })
         .then(function (res) {
           if (!res.ok) throw new Error('config.yml HTTP ' + res.status);
           return res.text();

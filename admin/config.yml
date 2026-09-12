@@ -72,8 +72,7 @@ collections:
         label: Site settings
         file: _data/identity.yml
         fields:
-          - { label: Full name, name: name, widget: string }
-          - { label: Short name (logo / footer), name: short_name, widget: string }
+          - { label: Full name, name: name, widget: string, hint: This is the name on the homepage, logo, footer and browser tab. }
           - { label: Name badge, name: name_badge, widget: image, required: false, hint: Small image shown next to the name (home, logo, footer). }
           - { label: Tagline, name: tagline, widget: string }
           - { label: Site description (SEO), name: description, widget: text }
@@ -108,7 +107,7 @@ collections:
         label: Home / hero
         file: _data/home.yml
         fields:
-          - { label: Title, name: title, widget: string }
+          - { label: Greeting before name, name: greeting, widget: string, hint: "Shown before Full name, e.g. Hi, I'm" }
           - { label: Subtitle, name: subtitle, widget: string }
           - { label: Description, name: description, widget: text }
           - { label: Photo, name: image, widget: image }
