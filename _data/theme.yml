@@ -1,5 +1,10 @@
 hue: 250
 font: Poppins
 default_mode: light
+hero_size: 2rem
+section_size: 1.25rem
+subtitle_size: 0.875rem
+body_size: 0.938rem
+small_size: 0.813rem
 favicon: /assets/img/favicon.svg
 custom_css: ""

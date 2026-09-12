@@ -2441,18 +2441,24 @@ select {
 html.is-admin .quick-edit-bar {
     display: flex;
     align-items: center;
-    flex-wrap: wrap;
-    gap: .5rem .75rem;
-    position: sticky;
-    top: 0;
+    flex-wrap: nowrap;
+    gap: .65rem .85rem;
+    position: fixed;
+    left: 50%;
+    bottom: calc(var(--header-height) + .85rem + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
     z-index: 200;
+    width: max-content;
+    max-width: calc(100vw - 1.5rem);
+    overflow-x: auto;
+    white-space: nowrap;
     padding: .45rem .9rem;
-    padding-left: max(.9rem, env(safe-area-inset-left));
-    padding-right: max(.9rem, env(safe-area-inset-right));
+    border-radius: 999px;
     background: var(--first-color);
     color: #fff;
-    font-size: var(--small-font-size);
+    font-size: var(--smaller-font-size);
     font-weight: var(--font-medium);
+    box-shadow: 0 10px 28px hsla(var(--hue-color), 69%, 40%, .35);
 }
 
 html.is-admin .quick-edit-bar a,
@@ -2600,13 +2606,18 @@ body.quick-edit-open {
 }
 
 @media screen and (max-width: 767px) {
-    html.is-admin .quick-edit-bar {
-        font-size: var(--smaller-font-size);
-        gap: .35rem .6rem;
-    }
-
     html.is-admin .quick-edit {
         top: .4rem;
         right: .4rem;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    html.is-admin .quick-edit-bar {
+        left: auto;
+        right: 1rem;
+        top: calc(var(--header-height) + 1.75rem);
+        bottom: auto;
+        transform: none;
     }
 }

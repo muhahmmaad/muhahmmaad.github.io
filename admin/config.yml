@@ -55,6 +55,45 @@ collections:
             options:
               - { label: Light, value: light }
               - { label: Dark, value: dark }
+          - label: Home title size
+            name: hero_size
+            widget: select
+            options:
+              - { label: Small, value: "1.5rem" }
+              - { label: Medium, value: "2rem" }
+              - { label: Large, value: "2.5rem" }
+              - { label: Extra large, value: "3rem" }
+          - label: Section title size
+            name: section_size
+            widget: select
+            options:
+              - { label: Small, value: "1.1rem" }
+              - { label: Medium, value: "1.25rem" }
+              - { label: Large, value: "1.5rem" }
+              - { label: Extra large, value: "2rem" }
+          - label: Subtitle size
+            name: subtitle_size
+            widget: select
+            options:
+              - { label: Small, value: "0.8rem" }
+              - { label: Medium, value: "0.875rem" }
+              - { label: Large, value: "1rem" }
+              - { label: Extra large, value: "1.125rem" }
+          - label: Body text size
+            name: body_size
+            widget: select
+            options:
+              - { label: Small, value: "0.85rem" }
+              - { label: Medium, value: "0.938rem" }
+              - { label: Large, value: "1.05rem" }
+              - { label: Extra large, value: "1.15rem" }
+          - label: Small text size
+            name: small_size
+            widget: select
+            options:
+              - { label: Small, value: "0.7rem" }
+              - { label: Medium, value: "0.813rem" }
+              - { label: Large, value: "0.875rem" }
           - { label: Favicon, name: favicon, widget: crop-image, required: false, aspect_ratio: "1/1" }
           - label: Extra CSS
             name: custom_css

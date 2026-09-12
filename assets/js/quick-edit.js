@@ -73,13 +73,12 @@
   var bar = document.createElement("div");
   bar.className = "quick-edit-bar";
   bar.innerHTML =
-    '<span class="quick-edit-bar__label">Admin</span>' +
-    '<button type="button" data-edit="homepage/identity" data-edit-label="Name & settings">Name &amp; settings</button>' +
+    '<span class="quick-edit-bar__label">Edit</span>' +
+    '<button type="button" data-edit="homepage/identity" data-edit-label="Name">Name</button>' +
     '<button type="button" data-edit="appearance/theme" data-edit-label="Theme">Theme</button>' +
     '<button type="button" data-edit="#/collections/posts" data-edit-label="Blog">Blog</button>' +
-    '<button type="button" data-edit="" data-edit-label="CMS">CMS</button>' +
-    '<button type="button" id="quick-edit-browse">Browse site</button>' +
-    '<button type="button" class="quick-edit-bar__logout" id="quick-edit-logout">Log out</button>';
+    '<button type="button" id="quick-edit-browse">Browse</button>' +
+    '<button type="button" class="quick-edit-bar__logout" id="quick-edit-logout">Out</button>';
   document.body.insertBefore(bar, document.body.firstChild);
 
   bar.querySelectorAll("[data-edit]").forEach(function (btn) {

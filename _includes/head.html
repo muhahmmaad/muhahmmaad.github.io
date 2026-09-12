@@ -56,6 +56,13 @@
 :root {
     --hue-color: {{ theme_hue }};
     --body-font: '{{ theme_font }}', sans-serif;
+    --big-font-size: {{ theme.hero_size | default: '2rem' }} !important;
+    --h1-font-size: {{ theme.hero_size | default: '2rem' }} !important;
+    --h2-font-size: {{ theme.section_size | default: '1.25rem' }} !important;
+    --h3-font-size: {{ theme.subtitle_size | default: '1.125rem' }} !important;
+    --normal-font-size: {{ theme.body_size | default: '0.938rem' }} !important;
+    --small-font-size: {{ theme.small_size | default: '0.813rem' }} !important;
+    --smaller-font-size: {{ theme.small_size | default: '0.75rem' }} !important;
 }
 </style>
 {% if theme.custom_css and theme.custom_css != "" %}
