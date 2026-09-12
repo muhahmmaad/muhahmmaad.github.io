@@ -23,6 +23,8 @@ collections:
   - name: appearance
     label: Theme & appearance
     description: Colours, font, light/dark, favicon, extra CSS.
+    editor:
+      preview: false
     files:
       - name: theme
         label: Theme
@@ -63,6 +65,8 @@ collections:
   - name: homepage
     label: Homepage
     description: Change any part of the live homepage. Publish and the site rebuilds in a minute.
+    editor:
+      preview: false
     files:
       - name: identity
         label: Site settings

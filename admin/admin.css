@@ -1,0 +1,196 @@
+/* Admin UI: mobile + desktop. Targets Decap's generated class name fragments. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+#cms-boot {
+  font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  padding: 2rem;
+  color: #3a2f6f;
+}
+
+input,
+textarea,
+select,
+[data-slate-editor="true"] {
+  max-width: 100%;
+  font-size: 16px !important;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Homepage files collection: wrap cards instead of overflowing */
+[class*="CollectionContainer"] {
+  max-width: 100%;
+}
+
+[class*="CardsCollection"],
+[class*="cards-card-grid"],
+[class*="CardGrid"] {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+[class*="Card-CardLink"],
+[class*="CardLink"] {
+  min-width: 0 !important;
+  max-width: 100% !important;
+}
+
+@media (max-width: 799px) {
+  [class*="DropdownList"] {
+    position: fixed !important;
+    width: min(90vw, 420px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
+    margin: auto !important;
+    max-height: 70vh !important;
+    overflow: auto !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  [class*="StyledModal"] {
+    width: min(92vw, 560px) !important;
+    max-height: 90dvh !important;
+    overflow: auto !important;
+  }
+
+  [class*="AppHeaderContent"],
+  [class*="AppMainContainer"] {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  [class*="AppHeader"] {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+
+  [class*="AppHeaderButton"] {
+    padding-left: 6px !important;
+    padding-right: 6px !important;
+  }
+
+  [class*="AppHeaderQuickNewButton"] {
+    width: auto !important;
+  }
+
+  [class*="LibraryTitle"],
+  [class*="BackCollection"] {
+    display: none !important;
+  }
+
+  [class*="CollectionContainer"] {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  [class*="SidebarContainer"] {
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto !important;
+  }
+
+  [class*="SidebarNavList"] {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 6px !important;
+  }
+
+  [class*="CollectionMain"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-top: 12px !important;
+    width: 100% !important;
+  }
+
+  [class*="ControlPaneContainer"] {
+    max-width: 100vw !important;
+    padding: 0 10px !important;
+  }
+
+  [class*="EditorContainer"],
+  [class*="ToolbarContainer"] {
+    min-width: 0 !important;
+    width: 100% !important;
+    overflow-x: auto !important;
+  }
+
+  [class*="ToolbarContainer"] {
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+    padding-bottom: env(safe-area-inset-bottom, 0px) !important;
+  }
+
+  [class*="ViewControls"] {
+    position: static !important;
+  }
+
+  /* Preview pane is unusable on phones and causes scroll lock. */
+  [class*="PreviewPaneContainer"] {
+    display: none !important;
+  }
+
+  [class*="SplitPane"] {
+    display: block !important;
+    height: auto !important;
+  }
+
+  [class*="Pane1"],
+  [class*="Pane"] {
+    width: 100% !important;
+    flex: 1 1 auto !important;
+    overflow: visible !important;
+  }
+
+  [class*="Resizer"] {
+    display: none !important;
+  }
+
+  [class*="CardsCollection"],
+  [class*="CardGrid"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 800px) {
+  [class*="AppMainContainer"] {
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  [class*="CollectionMain"] {
+    min-width: 0;
+  }
+}
+
+@media (hover: none) {
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+}

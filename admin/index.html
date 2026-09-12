@@ -2,17 +2,54 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="robots" content="noindex">
     <meta http-equiv="Cache-Control" content="no-store">
     <title>Content Manager | Muhammad Ahmad</title>
+    <link rel="stylesheet" href="admin.css?v=20260912d">
+    <link rel="preconnect" href="https://unpkg.com" crossorigin>
 </head>
 <body>
+    <div id="cms-boot">Loading editor…</div>
     <script>window.CMS_MANUAL_INIT = true;</script>
     <script src="https://unpkg.com/js-yaml@4.1.1/dist/js-yaml.min.js"></script>
-    <script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
+    <script src="https://unpkg.com/decap-cms@3.3.3/dist/decap-cms.js"></script>
     <script>
-      fetch('config.yml?v=20260912c', { cache: 'no-store' })
+      function auditConfig(config) {
+        var errors = [];
+        var names = Object.create(null);
+        var collections = config.collections || [];
+        if (!collections.length) errors.push('No collections defined');
+        collections.forEach(function (col) {
+          if (!col || !col.name) {
+            errors.push('A collection is missing name');
+            return;
+          }
+          if (names[col.name]) {
+            errors.push('Duplicate name "' + col.name + '" (' + names[col.name] + ' and collection)');
+          }
+          names[col.name] = 'collection';
+          if (col.files) {
+            col.files.forEach(function (file) {
+              if (!file.name) errors.push('A file in "' + col.name + '" is missing name');
+              else if (names[file.name]) {
+                errors.push('Duplicate name "' + file.name + '" (' + names[file.name] + ' and file)');
+              } else {
+                names[file.name] = 'file';
+              }
+              if (!file.file) errors.push('File "' + (file.name || '?') + '" is missing a path');
+              if (!file.fields || !file.fields.length) {
+                errors.push('File "' + (file.name || '?') + '" has no fields');
+              }
+            });
+          } else if (!col.folder) {
+            errors.push('Collection "' + col.name + '" needs files or folder');
+          }
+        });
+        if (errors.length) throw new Error(errors.join('\n'));
+      }
+
+      fetch('config.yml?v=20260912d', { cache: 'no-store' })
         .then(function (res) {
           if (!res.ok) throw new Error('config.yml HTTP ' + res.status);
           return res.text();
@@ -22,12 +59,15 @@
           if (!config || !config.backend) {
             throw new Error('config.yml parsed but backend is missing');
           }
+          auditConfig(config);
           config.load_config_file = false;
+          var boot = document.getElementById('cms-boot');
+          if (boot) boot.remove();
           CMS.init({ config: config });
         })
         .catch(function (err) {
           document.body.innerHTML =
-            '<pre style="font:16px/1.4 sans-serif;padding:2rem;color:#b00020">' +
+            '<pre style="font:16px/1.4 sans-serif;padding:2rem;color:#b00020;white-space:pre-wrap">' +
             'Failed to load CMS config:\n' + String(err) +
             '</pre>';
         });
