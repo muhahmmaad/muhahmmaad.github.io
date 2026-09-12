@@ -313,6 +313,38 @@ img {
     font-size: var(--big-font-size);
 }
 
+.name-badge {
+    display: inline-block;
+    width: 1.15em;
+    height: 1.15em;
+    margin-left: .15em;
+    vertical-align: -0.12em;
+    object-fit: contain;
+}
+
+.nav__logo {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+}
+
+.nav__logo .name-badge {
+    width: 1.05em;
+    height: 1.05em;
+    margin-left: 0;
+}
+
+.footer__title {
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+}
+
+.name-badge--footer {
+    width: 1em;
+    height: 1em;
+}
+
 .home__subtitle {
     font-size: var(--h3-font-size);
     color: var(--text-color);

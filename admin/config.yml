@@ -70,6 +70,7 @@ collections:
         fields:
           - { label: Full name, name: name, widget: string }
           - { label: Short name (logo / footer), name: short_name, widget: string }
+          - { label: Name badge, name: name_badge, widget: image, required: false, hint: Small image shown next to the name (home, logo, footer). }
           - { label: Tagline, name: tagline, widget: string }
           - { label: Site description (SEO), name: description, widget: text }
           - { label: Email, name: email, widget: string }
