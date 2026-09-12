@@ -1,16 +1,13 @@
-self.addEventListener("install", function (event) {
+self.addEventListener("install", function () {
   self.skipWaiting();
 });
 
 self.addEventListener("activate", function (event) {
-  event.waitUntil(self.clients.claim());
-});
-
-self.addEventListener("fetch", function (event) {
-  if (event.request.mode !== "navigate") return;
-  event.respondWith(
-    fetch(event.request, { cache: "no-store" }).catch(function () {
-      return caches.match(event.request);
+  event.waitUntil(
+    caches.keys().then(function (keys) {
+      return Promise.all(keys.map(function (key) { return caches.delete(key); }));
+    }).then(function () {
+      return self.registration.unregister();
     })
   );
 });
