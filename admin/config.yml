@@ -258,7 +258,7 @@ collections:
           - { label: Title, name: title, widget: string }
           - { label: Subtitle, name: subtitle, widget: string }
           - { label: Submit button, name: submit_label, widget: string }
-          - { label: Form action URL, name: form_action, widget: string }
+          - { label: Form action URL, name: form_action, widget: string, hint: Leave as formsubmit.co and messages go to Site settings email. }
           - { label: Email subject, name: form_subject, widget: string }
           - label: Contact info
             name: info

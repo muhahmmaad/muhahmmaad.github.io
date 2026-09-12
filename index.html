@@ -396,9 +396,17 @@ layout: default
                 {% endfor %}
             </div>
 
-            <form action="{{ contact.form_action | default: site.contact_form_action }}" method="POST" class="contact__form grid">
+            {%- assign inbox = identity.email | default: "muhahmmaad@gmail.com" -%}
+            {%- assign form_action = contact.form_action | default: site.contact_form_action -%}
+            {%- if form_action contains "formsubmit.co" -%}
+              {%- assign form_action = "https://formsubmit.co/" | append: inbox -%}
+            {%- endif -%}
+            <form action="{{ form_action }}" method="POST" class="contact__form grid" id="contact-form" data-inbox="{{ inbox }}">
                 <input type="hidden" name="_captcha" value="false">
-                <input type="hidden" name="_subject" value="{{ contact.form_subject }}">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_subject" value="{{ contact.form_subject | default: 'New message from your portfolio' }}">
+                <input type="hidden" name="_next" value="{{ '/thanks/' | absolute_url }}">
+                <input type="text" name="_honey" tabindex="-1" autocomplete="off" class="contact__honey" aria-hidden="true">
 
                 {%- assign half_fields = contact.fields | where: 'half', true -%}
                 {% if half_fields.size > 0 %}
@@ -430,11 +438,12 @@ layout: default
                 {% endfor %}
 
                 <div>
-                    <button type="submit" class="button button--flex">
+                    <button type="submit" class="button button--flex" id="contact-submit">
                         {{ contact.submit_label }}
                         <i class="uil uil-message button__icon"></i>
                     </button>
                 </div>
+                <p class="contact__status" id="contact-status" hidden></p>
             </form>
         </div>
     </section>

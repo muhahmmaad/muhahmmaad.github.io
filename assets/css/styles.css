@@ -2439,6 +2439,27 @@ html.is-admin .quick-edit:hover {
     color: #fff;
 }
 
+.contact__honey {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.contact__status {
+    margin: 0;
+    font-size: var(--small-font-size);
+}
+
+.contact__status--ok {
+    color: #1b7a3d;
+}
+
+.contact__status--err {
+    color: #b42318;
+}
+
 @media screen and (max-width: 767px) {
     html.is-admin .quick-edit-bar {
         font-size: var(--smaller-font-size);
