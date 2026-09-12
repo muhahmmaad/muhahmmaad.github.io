@@ -397,10 +397,7 @@ layout: default
             </div>
 
             {%- assign inbox = identity.email | default: "muhahmmaad@gmail.com" -%}
-            {%- assign form_action = contact.form_action | default: site.contact_form_action -%}
-            {%- if form_action contains "formsubmit.co" -%}
-              {%- assign form_action = "https://formsubmit.co/" | append: inbox -%}
-            {%- endif -%}
+            {%- assign form_action = contact.form_action | default: site.contact_form_action | default: "https://formsubmit.co/fea76f5485b556eb2393a7d3694f3d62" -%}
             <form action="{{ form_action }}" method="POST" class="contact__form grid" id="contact-form" data-inbox="{{ inbox }}">
                 <input type="hidden" name="_captcha" value="false">
                 <input type="hidden" name="_template" value="table">

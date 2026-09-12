@@ -19,7 +19,7 @@ social:
   facebook: https://www.facebook.com/muhahmmaad
 
 # Where the contact form posts. Swap this if the host changes.
-contact_form_action: https://formsubmit.co/muhahmmaad@gmail.com
+contact_form_action: https://formsubmit.co/fea76f5485b556eb2393a7d3694f3d62
 
 markdown: kramdown
 permalink: /blog/:title/
