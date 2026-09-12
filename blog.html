@@ -93,7 +93,7 @@ permalink: /blog/
         <div class="gram-panel" id="panel-research" role="tabpanel" hidden>
             <div class="post-grid post-grid--gram">
                 {% for item in site.data.research.items %}
-                    <article class="post-card">
+                    <article class="post-card" data-cms="homepage/research" data-cms-label="Research">
                         <a class="post-card__link" href="{{ '/#portfolio' | relative_url }}">
                             <div class="post-card__media">
                                 <img src="{{ item.image | relative_url }}" alt="" class="post-card__img" loading="lazy">

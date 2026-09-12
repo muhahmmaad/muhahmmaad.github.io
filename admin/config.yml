@@ -55,7 +55,7 @@ collections:
             options:
               - { label: Light, value: light }
               - { label: Dark, value: dark }
-          - { label: Favicon, name: favicon, widget: image, required: false }
+          - { label: Favicon, name: favicon, widget: crop-image, required: false, aspect_ratio: "1/1" }
           - label: Extra CSS
             name: custom_css
             widget: text
@@ -73,7 +73,7 @@ collections:
         file: _data/identity.yml
         fields:
           - { label: Full name, name: name, widget: string, hint: This is the name on the homepage, logo, footer and browser tab. }
-          - { label: Name badge, name: name_badge, widget: image, required: false, hint: Small image shown next to the name (home, logo, footer). }
+          - { label: Name badge, name: name_badge, widget: crop-image, required: false, aspect_ratio: "1/1", hint: Upload, crop, then it sits next to the name. }
           - { label: Tagline, name: tagline, widget: string }
           - { label: Site description (SEO), name: description, widget: text }
           - { label: Email, name: email, widget: string }
@@ -110,7 +110,7 @@ collections:
           - { label: Greeting before name, name: greeting, widget: string, hint: "Shown before Full name, e.g. Hi, I'm" }
           - { label: Subtitle, name: subtitle, widget: string }
           - { label: Description, name: description, widget: text }
-          - { label: Photo, name: image, widget: image }
+          - { label: Photo, name: image, widget: crop-image, aspect_ratio: "200/187", hint: Crop to fit the blob frame on the homepage. }
           - { label: Button text, name: cta_label, widget: string }
           - { label: Button link, name: cta_link, widget: string }
           - { label: Scroll label, name: scroll_label, widget: string }
@@ -121,7 +121,7 @@ collections:
         fields:
           - { label: Title, name: title, widget: string }
           - { label: Subtitle, name: subtitle, widget: string }
-          - { label: Photo, name: image, widget: image }
+          - { label: Photo, name: image, widget: crop-image, aspect_ratio: "1/1", hint: Crop to a square that fits the About frame. }
           - { label: Description, name: description, widget: text }
           - label: Stats
             name: stats
@@ -222,7 +222,7 @@ collections:
               - { label: Title, name: title, widget: string }
               - { label: Meta (authors / type), name: meta, widget: string, required: false }
               - { label: Status, name: status, widget: string, required: false }
-              - { label: Image, name: image, widget: image, required: false }
+              - { label: Image, name: image, widget: crop-image, required: false, aspect_ratio: "4/3" }
               - { label: Description, name: description, widget: text }
 
       - name: cta
@@ -233,7 +233,7 @@ collections:
           - { label: Description, name: description, widget: text }
           - { label: Button text, name: button_label, widget: string }
           - { label: Button link, name: button_link, widget: string }
-          - { label: Image, name: image, widget: image }
+          - { label: Image, name: image, widget: crop-image, aspect_ratio: "4/3" }
 
       - name: references
         label: References
@@ -248,7 +248,7 @@ collections:
             fields:
               - { label: Name, name: name, widget: string }
               - { label: Role, name: role, widget: string }
-              - { label: Photo, name: image, widget: image, required: false }
+              - { label: Photo, name: image, widget: crop-image, required: false, aspect_ratio: "1/1" }
               - { label: Quote, name: quote, widget: text }
 
       - name: insights
@@ -312,6 +312,6 @@ collections:
         hint: Posts are listed newest first. A future date hides the post until that date.
       - { label: Short description, name: description, widget: text, required: false }
       - { label: Category, name: category, widget: string, required: false }
-      - { label: Cover image, name: image, widget: image, required: false }
+      - { label: Cover image, name: image, widget: crop-image, required: false, aspect_ratio: "4/3" }
       - { label: Video link, name: video, widget: string, required: false, hint: YouTube, Vimeo or Instagram URL. Do not upload video files. }
       - { label: Body, name: body, widget: markdown }

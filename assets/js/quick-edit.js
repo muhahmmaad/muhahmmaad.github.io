@@ -20,6 +20,7 @@
   if (!isCmsAdmin()) return;
 
   document.documentElement.classList.add("is-admin");
+  document.documentElement.classList.add("is-admin-editing");
 
   var adminRoot = document.documentElement.getAttribute("data-admin") || "/admin/";
 
@@ -77,6 +78,7 @@
     '<button type="button" data-edit="appearance/theme" data-edit-label="Theme">Theme</button>' +
     '<button type="button" data-edit="#/collections/posts" data-edit-label="Blog">Blog</button>' +
     '<button type="button" data-edit="" data-edit-label="CMS">CMS</button>' +
+    '<button type="button" id="quick-edit-browse">Browse site</button>' +
     '<button type="button" class="quick-edit-bar__logout" id="quick-edit-logout">Log out</button>';
   document.body.insertBefore(bar, document.body.firstChild);
 
@@ -89,18 +91,48 @@
   document.querySelectorAll("[data-cms]").forEach(function (section) {
     var spec = section.getAttribute("data-cms");
     if (!spec) return;
-    var heading = section.querySelector(".section__title, .home__title, .project__title");
-    var label = heading ? heading.textContent.trim().slice(0, 40) : spec.split("/")[1];
+    var heading = section.querySelector(".section__title, .home__title, .project__title, .post-card__title");
+    var label =
+      section.getAttribute("data-cms-label") ||
+      (heading ? heading.textContent.trim().slice(0, 40) : spec.split("/")[1]);
     var button = document.createElement("button");
     button.type = "button";
     button.className = "quick-edit";
     button.textContent = "Edit";
     button.setAttribute("aria-label", "Edit this section here");
-    button.addEventListener("click", function () {
+    button.addEventListener("click", function (event) {
+      event.preventDefault();
+      event.stopPropagation();
       openEditor(spec, label);
     });
     section.appendChild(button);
   });
+
+  document.addEventListener(
+    "click",
+    function (event) {
+      if (!document.documentElement.classList.contains("is-admin-editing")) return;
+      if (event.target.closest(".quick-edit-overlay, .quick-edit-bar, .quick-edit, .nav__toggle, .nav__close, .change-theme, .scrollup, .contact__form, .gram-tab, .blog-filter__chip")) return;
+      var target = event.target.closest("[data-cms]");
+      if (!target) return;
+      event.preventDefault();
+      event.stopPropagation();
+      var spec = target.getAttribute("data-cms");
+      var label = target.getAttribute("data-cms-label") || spec;
+      openEditor(spec, label);
+    },
+    true
+  );
+
+  var browse = document.getElementById("quick-edit-browse");
+  if (browse) {
+    browse.addEventListener("click", function () {
+      document.documentElement.classList.toggle("is-admin-editing");
+      browse.textContent = document.documentElement.classList.contains("is-admin-editing")
+        ? "Browse site"
+        : "Click to edit";
+    });
+  }
 
   var logout = document.getElementById("quick-edit-logout");
   if (logout) {

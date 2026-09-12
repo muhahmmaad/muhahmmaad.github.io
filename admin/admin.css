@@ -1,4 +1,7 @@
-/* Admin UI: mobile + desktop. Targets Decap's generated class name fragments. */
+/* Light, simple admin so editing does not feel heavy. */
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+@import url("https://unpkg.com/cropperjs@1.6.2/dist/cropper.min.css");
 
 *,
 *::before,
@@ -10,15 +13,17 @@ html,
 body {
   margin: 0;
   min-height: 100%;
-  overflow-x: hidden;
+  background: #f6f3fb !important;
+  color: #2c2548;
+  font-family: Poppins, system-ui, sans-serif !important;
   -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
 }
 
 #cms-boot {
-  font: 16px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  padding: 2rem;
-  color: #3a2f6f;
+  font: 18px/1.5 Poppins, sans-serif;
+  padding: 3rem 1.5rem;
+  color: #6e57e0;
+  text-align: center;
 }
 
 input,
@@ -27,6 +32,7 @@ select,
 [data-slate-editor="true"] {
   max-width: 100%;
   font-size: 16px !important;
+  font-family: inherit !important;
 }
 
 img {
@@ -34,163 +40,237 @@ img {
   height: auto;
 }
 
-/* Homepage files collection: wrap cards instead of overflowing */
-[class*="CollectionContainer"] {
-  max-width: 100%;
+/* Login */
+[class*="Login"] {
+  background: #f6f3fb !important;
+}
+
+[class*="LoginButton"] {
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+}
+
+/* Header */
+[class*="AppHeader"] {
+  background: #fff !important;
+  box-shadow: 0 1px 0 rgba(80, 60, 140, 0.08) !important;
+}
+
+[class*="AppHeaderContent"],
+[class*="AppMainContainer"] {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+[class*="AppHeaderNavLink"],
+[class*="AppHeaderButton"] {
+  border-radius: 8px !important;
+}
+
+/* Editor canvas */
+[class*="ControlPaneContainer"],
+[class*="EditorControlBar"],
+[class*="CollectionMain"] {
+  background: transparent !important;
+}
+
+[class*="ControlContainer"],
+[class*="ControlErrorsList"] + div,
+[class*="ListItem"] {
+  background: #fff !important;
+  border: 1px solid #ece7f6 !important;
+  border-radius: 14px !important;
+  box-shadow: 0 6px 18px rgba(80, 60, 140, 0.05) !important;
+}
+
+[class*="ControlLabel"] {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em;
+  color: #6e57e0 !important;
+  text-transform: none !important;
+}
+
+[class*="TextControl"],
+[class*="StringControl"] input,
+textarea,
+[class*="SelectControl"] {
+  border-radius: 10px !important;
+  border-color: #e4dcf4 !important;
+  background: #fcfbfe !important;
+}
+
+[class*="ToolbarContainer"] {
+  border-radius: 12px !important;
+}
+
+/* Homepage cards */
+[class*="Card"] {
+  border-radius: 16px !important;
+  border: 1px solid #ece7f6 !important;
+  box-shadow: 0 8px 24px rgba(80, 60, 140, 0.06) !important;
 }
 
 [class*="CardsCollection"],
-[class*="cards-card-grid"],
 [class*="CardGrid"] {
   display: grid !important;
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)) !important;
   gap: 16px !important;
-  width: 100% !important;
 }
 
-[class*="Card-CardLink"],
-[class*="CardLink"] {
-  min-width: 0 !important;
-  max-width: 100% !important;
+/* Lists: keep existing items readable */
+[class*="ListControl"] [class*="ListItem"] {
+  padding: 12px !important;
+  margin-bottom: 10px !important;
+}
+
+/* Crop widget */
+.crop-widget {
+  background: #fcfbfe;
+  border: 1px dashed #cbbcf0;
+  border-radius: 14px;
+  padding: 12px;
+}
+
+.crop-widget__preview {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.crop-widget__empty {
+  padding: 28px 12px;
+  text-align: center;
+  color: #7a7196;
+}
+
+.crop-widget__row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.crop-widget__btn {
+  border: 0;
+  background: #6e57e0;
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  padding: 8px 14px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.crop-widget__btn:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.crop-widget__btn--ghost {
+  background: #fff;
+  color: #6e57e0;
+  border: 1px solid #cbbcf0;
+}
+
+.crop-widget__err {
+  color: #b42318;
+  font-size: 13px;
+  margin: 8px 0 0;
+}
+
+.crop-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(28, 20, 48, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.crop-modal__box {
+  width: min(720px, 100%);
+  background: #fff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 20px 50px rgba(28, 20, 48, 0.25);
+}
+
+.crop-modal__hint {
+  margin: 0 0 10px;
+  color: #5c5470;
+  font-size: 14px;
+}
+
+.crop-modal__stage {
+  height: min(60vh, 420px);
+  background: #efeaf8;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.crop-modal__stage img {
+  max-width: 100%;
+  display: block;
+}
+
+.crop-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.crop-modal__cancel,
+.crop-modal__apply {
+  font: inherit;
+  font-weight: 600;
+  border-radius: 10px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+
+.crop-modal__cancel {
+  border: 1px solid #ddd6ee;
+  background: #fff;
+  color: #4a4460;
+}
+
+.crop-modal__apply {
+  border: 0;
+  background: #6e57e0;
+  color: #fff;
 }
 
 @media (max-width: 799px) {
-  [class*="DropdownList"] {
-    position: fixed !important;
-    width: min(90vw, 420px) !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: calc(12px + env(safe-area-inset-bottom, 0px)) !important;
-    margin: auto !important;
-    max-height: 70vh !important;
-    overflow: auto !important;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  [class*="StyledModal"] {
-    width: min(92vw, 560px) !important;
-    max-height: 90dvh !important;
-    overflow: auto !important;
-  }
-
-  [class*="AppHeaderContent"],
-  [class*="AppMainContainer"] {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    width: 100% !important;
-  }
-
-  [class*="AppHeader"] {
-    padding-left: 8px !important;
-    padding-right: 8px !important;
-  }
-
-  [class*="AppHeaderButton"] {
-    padding-left: 6px !important;
-    padding-right: 6px !important;
-  }
-
-  [class*="AppHeaderQuickNewButton"] {
-    width: auto !important;
-  }
-
-  [class*="LibraryTitle"],
-  [class*="BackCollection"] {
-    display: none !important;
-  }
-
-  [class*="CollectionContainer"] {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-
   [class*="SidebarContainer"] {
     position: static !important;
     width: 100% !important;
-    max-width: 100% !important;
     height: auto !important;
   }
 
-  [class*="SidebarNavList"] {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 6px !important;
-  }
-
-  [class*="CollectionMain"] {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    margin-top: 12px !important;
-    width: 100% !important;
-  }
-
-  [class*="ControlPaneContainer"] {
-    max-width: 100vw !important;
-    padding: 0 10px !important;
-  }
-
-  [class*="EditorContainer"],
-  [class*="ToolbarContainer"] {
-    min-width: 0 !important;
-    width: 100% !important;
-    overflow-x: auto !important;
-  }
-
-  [class*="ToolbarContainer"] {
-    flex-wrap: wrap !important;
-    gap: 8px !important;
-    padding-bottom: env(safe-area-inset-bottom, 0px) !important;
-  }
-
-  [class*="ViewControls"] {
-    position: static !important;
-  }
-
-  /* Preview pane is unusable on phones and causes scroll lock. */
   [class*="PreviewPaneContainer"] {
     display: none !important;
   }
 
   [class*="SplitPane"] {
     display: block !important;
-    height: auto !important;
   }
 
-  [class*="Pane1"],
-  [class*="Pane"] {
-    width: 100% !important;
-    flex: 1 1 auto !important;
-    overflow: visible !important;
+  [class*="ControlPaneContainer"] {
+    padding: 0 10px !important;
   }
 
-  [class*="Resizer"] {
-    display: none !important;
-  }
-
-  [class*="CardsCollection"],
-  [class*="CardGrid"] {
+  [class*="CardsCollection"] {
     grid-template-columns: 1fr !important;
   }
-}
 
-@media (min-width: 800px) {
-  [class*="AppMainContainer"] {
-    max-width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  [class*="CollectionMain"] {
-    min-width: 0;
-  }
-}
-
-@media (hover: none) {
-  button,
-  a {
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
+  [class*="StyledModal"] {
+    width: min(92vw, 560px) !important;
   }
 }

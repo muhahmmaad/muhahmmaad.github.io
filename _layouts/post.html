@@ -2,7 +2,8 @@
 layout: default
 ---
 
-<article class="section post">
+{%- assign post_entry = page.path | split: '/' | last | replace: '.markdown', '' | replace: '.md', '' -%}
+<article class="section post" data-cms="posts/{{ post_entry }}" data-cms-label="{{ page.title | escape }}">
     <div class="container post__container">
         <a href="{{ '/blog/' | relative_url }}" class="post__back button--link button--flex">
             <i class="uil uil-arrow-left button__icon post__back-icon"></i> All posts

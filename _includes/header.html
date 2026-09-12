@@ -9,7 +9,7 @@
   {%- assign prefix = home -%}
 {%- endif -%}
 
-<header class="header" id="header">
+<header class="header" id="header" data-cms="homepage/identity" data-cms-label="Name &amp; menu">
     <nav class="nav container">
         <a href="{{ home }}" class="nav__logo"><span data-live="name">{{ site.data.identity.name | default: site.data.identity.short_name }}</span>{% if site.data.identity.name_badge %} <img src="{{ site.data.identity.name_badge | relative_url }}" alt="" class="name-badge">{% endif %}</a>
 

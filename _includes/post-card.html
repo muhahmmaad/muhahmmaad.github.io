@@ -12,7 +12,8 @@
 {%- assign fallback = include.index | default: 0 | modulo: 4 -%}
 {%- assign cat = post.category | default: post.categories.first -%}
 
-<article class="post-card" data-category="{{ cat | slugify }}"{% if post.video %} data-video="true"{% endif %}>
+{%- assign post_entry = post.path | split: '/' | last | replace: '.markdown', '' | replace: '.md', '' -%}
+<article class="post-card" data-category="{{ cat | slugify }}"{% if post.video %} data-video="true"{% endif %} data-cms="posts/{{ post_entry }}" data-cms-label="{{ post.title | escape }}">
     <a class="post-card__link" href="{{ post.url | relative_url }}">
         <div class="post-card__media">
             {% if post.image %}

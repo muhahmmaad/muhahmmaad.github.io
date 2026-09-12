@@ -2436,8 +2436,21 @@ html.is-admin .quick-edit-bar button:hover {
     margin-right: .25rem;
 }
 
-html.is-admin .section[data-cms] {
+html.is-admin .section[data-cms],
+html.is-admin [data-cms] {
     position: relative;
+}
+
+html.is-admin-editing [data-cms] {
+    cursor: pointer;
+    outline: 2px dashed transparent;
+    outline-offset: 6px;
+    transition: outline-color .2s ease, box-shadow .2s ease;
+}
+
+html.is-admin-editing [data-cms]:hover {
+    outline-color: var(--first-color);
+    box-shadow: 0 0 0 6px hsla(var(--hue-color), 69%, 61%, .12);
 }
 
 html.is-admin .quick-edit {
