@@ -6,7 +6,7 @@
     <meta name="robots" content="noindex">
     <meta http-equiv="Cache-Control" content="no-store">
     <title>Content Manager | Muhammad Ahmad</title>
-    <link rel="stylesheet" href="admin.css?v=20260912g">
+    <link rel="stylesheet" href="admin.css?v=20260912h">
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
 </head>
 <body>
@@ -15,7 +15,7 @@
     <script src="https://unpkg.com/js-yaml@4.1.1/dist/js-yaml.min.js"></script>
     <script src="https://unpkg.com/decap-cms@3.3.3/dist/decap-cms.js"></script>
     <script src="https://unpkg.com/cropperjs@1.6.2/dist/cropper.min.js"></script>
-    <script src="crop-widget.js?v=20260912g"></script>
+    <script src="crop-widget.js?v=20260912h"></script>
     <script>
       function auditConfig(config) {
         var errors = [];
@@ -51,7 +51,7 @@
         if (errors.length) throw new Error(errors.join('\n'));
       }
 
-      fetch('config.yml?v=20260912g', { cache: 'no-store' })
+      fetch('config.yml?v=20260912h', { cache: 'no-store' })
         .then(function (res) {
           if (!res.ok) throw new Error('config.yml HTTP ' + res.status);
           return res.text();

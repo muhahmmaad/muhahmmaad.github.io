@@ -82,6 +82,8 @@ collections:
           - label: Social links
             name: social
             widget: list
+            collapsed: false
+            minimize_collapsed: false
             summary: "{{name}}"
             fields:
               - { label: Name, name: name, widget: string }
@@ -90,6 +92,8 @@ collections:
           - label: Navigation
             name: nav
             widget: list
+            collapsed: false
+            minimize_collapsed: false
             summary: "{{label}}"
             fields:
               - { label: Label, name: label, widget: string }
@@ -98,6 +102,8 @@ collections:
           - label: Footer links
             name: footer_links
             widget: list
+            collapsed: false
+            minimize_collapsed: false
             summary: "{{label}}"
             fields:
               - { label: Label, name: label, widget: string }
@@ -123,13 +129,16 @@ collections:
           - { label: Subtitle, name: subtitle, widget: string }
           - { label: Photo, name: image, widget: crop-image, aspect_ratio: "1/1", hint: Crop to a square that fits the About frame. }
           - { label: Description, name: description, widget: text }
-          - label: Stats
+          - label: Stats (the number boxes on About)
             name: stats
             widget: list
+            collapsed: false
+            minimize_collapsed: false
+            label_singular: Stat
             summary: "{{value}} {{label}}"
             fields:
-              - { label: Value, name: value, widget: string }
-              - { label: Label, name: label, widget: string }
+              - { label: Number, name: value, widget: string, hint: "e.g. 1.5+ or 04" }
+              - { label: Label under the number, name: label, widget: string, hint: "e.g. Years experience" }
           - { label: CV button text, name: cv_label, widget: string }
 
       - name: skills
@@ -147,13 +156,16 @@ collections:
               - { label: Group title, name: title, widget: string }
               - { label: Group subtitle, name: subtitle, widget: string }
               - { label: Icon class, name: icon, widget: string, hint: "e.g. uil uil-megaphone" }
-              - label: Skills
+              - label: Skill bars
                 name: items
                 widget: list
+                collapsed: false
+                minimize_collapsed: false
+                label_singular: Skill bar
                 summary: "{{name}} {{percent}}%"
                 fields:
-                  - { label: Name, name: name, widget: string }
-                  - { label: Percent, name: percent, widget: number, min: 0, max: 100, value_type: int }
+                  - { label: Skill name, name: name, widget: string }
+                  - { label: Bar percent, name: percent, widget: number, min: 0, max: 100, value_type: int, hint: "0–100. This is the coloured bar on the site." }
 
       - name: qualification
         label: Qualification
@@ -206,6 +218,8 @@ collections:
               - label: Points
                 name: points
                 widget: list
+                collapsed: false
+                minimize_collapsed: false
                 field: { label: Point, name: point, widget: string }
 
       - name: research
@@ -217,6 +231,8 @@ collections:
           - label: Publications
             name: items
             widget: list
+            collapsed: false
+            minimize_collapsed: false
             summary: "{{title}}"
             fields:
               - { label: Title, name: title, widget: string }
@@ -244,6 +260,8 @@ collections:
           - label: Referees
             name: items
             widget: list
+            collapsed: false
+            minimize_collapsed: false
             summary: "{{name}}"
             fields:
               - { label: Name, name: name, widget: string }
@@ -271,6 +289,8 @@ collections:
           - label: Contact info
             name: info
             widget: list
+            collapsed: false
+            minimize_collapsed: false
             summary: "{{label}}: {{value}}"
             fields:
               - { label: Label, name: label, widget: string }
@@ -279,6 +299,8 @@ collections:
           - label: Form fields
             name: fields
             widget: list
+            collapsed: false
+            minimize_collapsed: false
             summary: "{{label}}"
             fields:
               - { label: Label, name: label, widget: string }

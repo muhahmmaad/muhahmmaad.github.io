@@ -119,10 +119,15 @@ textarea,
   gap: 16px !important;
 }
 
-/* Lists: keep existing items readable */
+/* Lists: keep existing items readable and open */
 [class*="ListControl"] [class*="ListItem"] {
   padding: 12px !important;
   margin-bottom: 10px !important;
+}
+
+[class*="NestedObject"] {
+  display: block !important;
+  padding-top: 8px !important;
 }
 
 /* Crop widget */
