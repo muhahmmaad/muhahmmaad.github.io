@@ -141,6 +141,7 @@ collections:
           - label: Skill groups
             name: groups
             widget: list
+            collapsed: false
             summary: "{{title}}"
             fields:
               - { label: Group title, name: title, widget: string }
@@ -165,19 +166,25 @@ collections:
           - label: Education
             name: education
             widget: list
-            summary: "{{title}}"
+            collapsed: false
+            minimize_collapsed: false
+            label_singular: Education item
+            summary: "{{title}} — {{date}}"
             fields:
-              - { label: Title, name: title, widget: string }
-              - { label: Place, name: subtitle, widget: string }
-              - { label: Date, name: date, widget: string }
+              - { label: Degree / title, name: title, widget: string }
+              - { label: University / place, name: subtitle, widget: string }
+              - { label: Year or date, name: date, widget: string }
           - label: Experience
             name: experience
             widget: list
-            summary: "{{title}}"
+            collapsed: false
+            minimize_collapsed: false
+            label_singular: Experience item
+            summary: "{{title}} — {{date}}"
             fields:
-              - { label: Title, name: title, widget: string }
-              - { label: Place, name: subtitle, widget: string }
-              - { label: Date, name: date, widget: string }
+              - { label: Job title, name: title, widget: string }
+              - { label: Company / place, name: subtitle, widget: string }
+              - { label: Dates, name: date, widget: string }
 
       - name: services
         label: Services
@@ -191,6 +198,7 @@ collections:
           - label: Services
             name: items
             widget: list
+            collapsed: false
             summary: "{{title}}"
             fields:
               - { label: Title, name: title, widget: string }
