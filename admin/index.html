@@ -12,7 +12,7 @@
     <script src="https://unpkg.com/js-yaml@4.1.1/dist/js-yaml.min.js"></script>
     <script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
     <script>
-      fetch('config.yml?v=20260912b', { cache: 'no-store' })
+      fetch('config.yml?v=20260912c', { cache: 'no-store' })
         .then(function (res) {
           if (!res.ok) throw new Error('config.yml HTTP ' + res.status);
           return res.text();
@@ -22,6 +22,7 @@
           if (!config || !config.backend) {
             throw new Error('config.yml parsed but backend is missing');
           }
+          config.load_config_file = false;
           CMS.init({ config: config });
         })
         .catch(function (err) {
