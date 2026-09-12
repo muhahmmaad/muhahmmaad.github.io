@@ -1,0 +1,29 @@
+title: Qualification
+subtitle: My personal journey
+education_label: Education
+experience_label: Experience
+
+education:
+  - title: MPhil, Business Administration
+    subtitle: University of Gujrat — Pakistan
+    date: "2026"
+  - title: Bachelor in Education (B.Ed.)
+    subtitle: Allama Iqbal Open University — Pakistan
+    date: "2026"
+  - title: BBA (Hons), Business Administration
+    subtitle: The University of Lahore — Pakistan
+    date: "2022"
+  - title: Bachelor of Arts (B.A.)
+    subtitle: University of the Punjab — Pakistan
+    date: "2019"
+
+experience:
+  - title: Influencer Marketing Manager
+    subtitle: Influtik — Marketing Agency, London (Remote)
+    date: Feb 2025 — Present
+  - title: Social Media Marketing Executive
+    subtitle: Lahore Business School, The University of Lahore
+    date: Jan 2022 — May 2024
+  - title: Chinese Language Professional
+    subtitle: Xi'an Shiyou University — Xi'an, China
+    date: "2023"

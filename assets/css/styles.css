@@ -1,5 +1,4 @@
-/*==================== GOOGLE FONTS ====================*/
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+/* Fonts are loaded from _includes/head.html so admin can change the family. */
 
 /*==================== VARIABLES CSS ====================*/
 :root {
@@ -2126,4 +2125,210 @@ textarea:focus-visible,
 
 .post__video-link {
     margin: var(--mb-2) 0;
+}
+
+/*==================== CROSS-BROWSER + RESPONSIVE ====================*/
+html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    overflow-x: hidden;
+    min-width: 0;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+img,
+svg,
+video,
+iframe {
+    max-width: 100%;
+    height: auto;
+}
+
+button,
+.button,
+.nav__link,
+.nav__toggle,
+.nav__close,
+.change-theme,
+.services__button,
+.qualification__button,
+.gram-tab,
+.blog-filter__chip {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+input,
+textarea,
+select {
+    font-family: inherit;
+    font-size: 16px; /* stops iOS zooming the page on focus */
+    max-width: 100%;
+}
+
+.contact__input {
+    font-size: 16px;
+}
+
+.home__title,
+.home__description,
+.post-card__title,
+.services__title {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+}
+
+.services__modal {
+    height: 100%;
+    height: 100dvh;
+    padding: env(safe-area-inset-top, 0px) 1rem env(safe-area-inset-bottom, 0px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.services__modal-content {
+    max-width: 100%;
+    max-height: calc(100dvh - 2rem);
+    overflow-y: auto;
+}
+
+.swiper-container,
+.portfolio__container,
+.testimonial__container {
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.post-grid--gram .post-card__link {
+    aspect-ratio: 1 / 1;
+}
+
+@supports not (aspect-ratio: 1 / 1) {
+    .post-grid--gram .post-card__link {
+        height: 0;
+        padding-bottom: 100%;
+    }
+
+    .post__video {
+        height: 0;
+        padding-bottom: 56.25%;
+    }
+}
+
+/* iPhone home-indicator clearance for the bottom nav */
+@media screen and (max-width: 767px) {
+    body {
+        margin-bottom: calc(var(--header-height) + env(safe-area-inset-bottom, 0px));
+    }
+
+    .header {
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+
+    .nav__menu {
+        padding-bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+    }
+
+    .home__content {
+        padding-top: 2rem;
+    }
+
+    .home__blob {
+        max-width: 70vw;
+    }
+
+    .about__img {
+        width: min(200px, 70vw);
+    }
+
+    .services__container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact__inputs {
+        grid-template-columns: 1fr;
+    }
+
+    .qualification__data {
+        column-gap: .75rem;
+    }
+
+    .scrollup {
+        right: 1rem;
+        bottom: calc(4.5rem + env(safe-area-inset-bottom, 0px));
+    }
+}
+
+@media screen and (min-width: 568px) and (max-width: 767px) {
+    .services__container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .home__blob {
+        width: min(240px, 42vw);
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .container {
+        width: calc(100% - 3rem);
+        max-width: 768px;
+    }
+
+    .home__social {
+        transform: none;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .container {
+        max-width: 968px;
+    }
+
+    .home__social {
+        transform: translateX(-6rem);
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 1023px) {
+    .home__social {
+        transform: none;
+    }
+
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: none;
+    }
+}
+
+@media (hover: none) {
+    .button:hover,
+    .post-card:hover,
+    .services__content:hover {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+}
+
+@media (forced-colors: active) {
+    .section__title::after,
+    .skills__percentage,
+    .nav__link,
+    .button {
+        forced-color-adjust: none;
+    }
 }

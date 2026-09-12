@@ -3,7 +3,7 @@
 <head>
     {% include head.html %}
 </head>
-<body>
+<body data-default-theme="{{ site.data.theme.default_mode | default: 'light' }}">
     {% include header.html %}
 
     <main class="main">

@@ -1,21 +1,38 @@
-# Publications, kept here rather than hardcoded in the page so the Research
-# tab and the homepage carousel stay in step with one another.
-- title: Role of Digital Banking in Bank of Punjab
-  meta: Research Methodology
-  status: Supervised
-  image: /assets/img/research1.svg
+title: Research & Publications
+subtitle: Most recent work
 
-- title: AI in Business Decision Making
-  meta: Ahmad, Fyyaz, Mustansar & Sarwar
-  status: Published
-  image: /assets/img/research2.svg
+items:
+  - title: Role of Digital Banking in Bank of Punjab
+    meta: Research Methodology
+    status: Supervised
+    image: /assets/img/research1.svg
+    description: >-
+      A research-methodology study conducted under the supervision of Dr Sheeraz
+      Ahmad, examining how digital banking adoption shapes service delivery and
+      customer experience.
 
-- title: AI Social Traits in AI-Based Chatbots
-  meta: Ahmad, Fyyaz, Abid & Sarwar
-  status: Systematic review
-  image: /assets/img/research3.svg
+  - title: AI in Business Decision Making
+    meta: Ahmad, Fyyaz, Mustansar & Sarwar
+    status: Published
+    image: /assets/img/research2.svg
+    description: >-
+      Ahmad, M., Fyyaz, S., Mustansar, K., & Sarwar, M. A. — Exploring the
+      potential key factors used to analyse the impact of AI on business
+      decision making.
 
-- title: A Model of AI Social Attributes
-  meta: Authenticity & purchase intention
-  status: Under review
-  image: /assets/img/research4.svg
+  - title: AI Social Traits in AI-Based Chatbots
+    meta: Ahmad, Fyyaz, Abid & Sarwar
+    status: Systematic review
+    image: /assets/img/research3.svg
+    description: >-
+      Ahmad, M., Fyyaz, S., Abid, M. A., & Sarwar, M. A. — A systematic review
+      of how chatbot social traits influence consumer purchase intentions, with
+      perceived authenticity as a mediating factor.
+
+  - title: A Model of AI Social Attributes
+    meta: Authenticity & purchase intention
+    status: Under review
+    image: /assets/img/research4.svg
+    description: >-
+      A proposed model of AI social attributes and their influence on perceived
+      authenticity and purchase intentions. Currently under review.

@@ -11,45 +11,26 @@
 
 <header class="header" id="header">
     <nav class="nav container">
-        <a href="{{ home }}" class="nav__logo">Ahmad</a>
+        <a href="{{ home }}" class="nav__logo">{{ site.data.identity.short_name | default: site.author.name }}</a>
 
         <div class="nav__menu" id="nav-menu">
             <ul class="nav__list grid">
+                {% for item in site.data.identity.nav %}
+                {%- if item.href contains '#' -%}
+                  {%- assign href = prefix | append: item.href -%}
+                {%- else -%}
+                  {%- assign href = item.href | relative_url -%}
+                {%- endif -%}
+                {%- assign is_home = false -%}
+                {%- assign is_blog = false -%}
+                {%- if item.href == '#home' and page.url == '/' -%}{%- assign is_home = true -%}{%- endif -%}
+                {%- if item.href == '/blog/' and page.url contains '/blog' -%}{%- assign is_blog = true -%}{%- endif -%}
                 <li class="nav__item">
-                    <a href="{{ prefix }}#home" class="nav__link{% if page.url == '/' %} active-link{% endif %}">
-                        <i class="uil uil-estate nav__icon"></i> Home
+                    <a href="{{ href }}" class="nav__link{% if is_home or is_blog %} active-link{% endif %}">
+                        <i class="{{ item.icon }} nav__icon"></i> {{ item.label }}
                     </a>
                 </li>
-                <li class="nav__item">
-                    <a href="{{ prefix }}#about" class="nav__link">
-                        <i class="uil uil-user nav__icon"></i> About
-                    </a>
-                </li>
-                <li class="nav__item">
-                    <a href="{{ prefix }}#skills" class="nav__link">
-                        <i class="uil uil-file-alt nav__icon"></i> Skills
-                    </a>
-                </li>
-                <li class="nav__item">
-                    <a href="{{ prefix }}#services" class="nav__link">
-                        <i class="uil uil-briefcase-alt nav__icon"></i> Services
-                    </a>
-                </li>
-                <li class="nav__item">
-                    <a href="{{ prefix }}#portfolio" class="nav__link">
-                        <i class="uil uil-scenery nav__icon"></i> Research
-                    </a>
-                </li>
-                <li class="nav__item">
-                    <a href="{{ '/blog/' | relative_url }}" class="nav__link{% if page.url contains '/blog' %} active-link{% endif %}">
-                        <i class="uil uil-notes nav__icon"></i> Blog
-                    </a>
-                </li>
-                <li class="nav__item">
-                    <a href="{{ prefix }}#contact" class="nav__link">
-                        <i class="uil uil-message nav__icon"></i> Contact
-                    </a>
-                </li>
+                {% endfor %}
             </ul>
 
             <i class="uil uil-times nav__close" id="nav-close"></i>

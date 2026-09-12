@@ -1,0 +1,20 @@
+title: About Me
+subtitle: My introduction
+image: /assets/img/profile.jpg
+description: >-
+  I hold a Master of Philosophy in Business Administration with 1.5 years of
+  experience as an Influencer Marketing Manager and SMME. I am skilled in
+  Administration, Marketing and Management, and have completed various
+  technical courses to sharpen my practical abilities. With a strong
+  understanding of market trends and research methods, I am committed to
+  delivering impactful results in dynamic, fast-paced environments.
+
+stats:
+  - value: "1.5+"
+    label: Years experience
+  - value: "04"
+    label: Research publications
+  - value: "08+"
+    label: Professional certifications
+
+cv_label: Download CV

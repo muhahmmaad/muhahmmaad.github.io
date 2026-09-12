@@ -1,0 +1,29 @@
+title: Services
+subtitle: What I offer
+more_label: View More
+
+items:
+  - title: Influencer Marketing
+    icon: uil uil-megaphone
+    points:
+      - I plan, develop and execute campaigns for artists' singles and albums.
+      - I identify and build relationships with influencers, creators, DJs and bloggers.
+      - I grow streams, plays, exposure and fan engagement across digital platforms.
+      - I identify target audiences and tailor content to their preferences.
+
+  - title: Social Media Management
+    icon: uil uil-instagram-alt
+    points:
+      - I manage and optimise accounts to raise brand visibility and engagement.
+      - I create and schedule posts, reels, stories and campaigns.
+      - I run paid campaigns via Meta Ads Manager and Google Ads.
+      - I edit video and design visuals with Premiere Pro, CapCut, Photoshop and Canva.
+      - I engage audiences by responding to comments, messages and inquiries.
+
+  - title: Data Analysis & Research
+    icon: uil uil-chart-line
+    points:
+      - SPSS — descriptive statistics, regression, reliability and hypothesis testing.
+      - AMOS — structural equation modelling (SEM) and confirmatory factor analysis.
+      - SmartPLS — PLS-SEM with mediation and moderation analysis.
+      - Campaign performance analysis and market research reporting.

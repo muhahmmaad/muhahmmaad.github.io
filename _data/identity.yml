@@ -1,0 +1,57 @@
+name: Muhammad Ahmad
+short_name: Ahmad
+tagline: Influencer Marketing Manager | SMME
+description: >-
+  Influencer Marketing Manager and Social Media Marketing Executive.
+  MPhil Business Administration, skilled in campaign strategy,
+  data analysis (SPSS, AMOS, SmartPLS) and content creation.
+email: muhahmmaad@gmail.com
+cv_file: /assets/pdf/Muhammad-Ahmad-CV.pdf
+cv_filename: Muhammad-Ahmad-CV.pdf
+
+social:
+  - name: LinkedIn
+    url: https://www.linkedin.com/in/muhahmmaad
+    icon: uil uil-linkedin-alt
+  - name: Instagram
+    url: https://www.instagram.com/muhahmmad
+    icon: uil uil-instagram
+  - name: Facebook
+    url: https://www.facebook.com/muhahmmaad
+    icon: uil uil-facebook-f
+  - name: GitHub
+    url: https://github.com/muhahmmaad
+    icon: uil uil-github-alt
+
+nav:
+  - label: Home
+    href: "#home"
+    icon: uil uil-estate
+  - label: About
+    href: "#about"
+    icon: uil uil-user
+  - label: Skills
+    href: "#skills"
+    icon: uil uil-file-alt
+  - label: Services
+    href: "#services"
+    icon: uil uil-briefcase-alt
+  - label: Research
+    href: "#portfolio"
+    icon: uil uil-scenery
+  - label: Blog
+    href: "/blog/"
+    icon: uil uil-notes
+  - label: Contact
+    href: "#contact"
+    icon: uil uil-message
+
+footer_links:
+  - label: Services
+    href: "#services"
+  - label: Research
+    href: "#portfolio"
+  - label: Blog
+    href: "/blog/"
+  - label: Contact
+    href: "#contact"

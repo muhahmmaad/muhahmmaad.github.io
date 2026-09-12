@@ -1,0 +1,38 @@
+title: Contact Me
+subtitle: Get in touch
+submit_label: Send Message
+form_action: https://formsubmit.co/muhahmmaad@gmail.com
+form_subject: New message from your portfolio
+
+info:
+  - label: Call Me
+    value: "+92 311 1100 341"
+    icon: uil uil-phone
+  - label: Email
+    value: muhahmmaad@gmail.com
+    icon: uil uil-envelope
+  - label: Location
+    value: Pakistan
+    icon: uil uil-map-marker
+
+fields:
+  - label: Name
+    name: name
+    type: text
+    required: true
+    half: true
+  - label: Email
+    name: email
+    type: email
+    required: true
+    half: true
+  - label: Subject
+    name: subject
+    type: text
+    required: true
+    half: false
+  - label: Message
+    name: message
+    type: textarea
+    required: true
+    half: false

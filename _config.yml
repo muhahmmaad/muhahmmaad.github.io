@@ -40,3 +40,4 @@ exclude:
   - Gemfile.lock
   - vendor
   - .DS_Store
+  - docs/wrangler.toml

@@ -1,0 +1,5 @@
+hue: 250
+font: Poppins
+default_mode: light
+favicon: /assets/img/favicon.svg
+custom_css: ""

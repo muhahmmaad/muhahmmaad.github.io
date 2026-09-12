@@ -1,27 +1,17 @@
-# Decap CMS configuration.
-# The editor lives at /admin/ and commits straight back into this repository,
-# which is what makes the site rebuild and publish itself.
+# Decap CMS — every homepage section is editable here.
+# Live at https://muhahmmaad.github.io/admin/
 #
-# SETUP: `base_url` below must point at an OAuth helper before login works.
-# See docs/CMS-SETUP.md — it is a one-time, ten-minute, no-cost step.
+# SETUP: `base_url` must point at the OAuth helper. See docs/CMS-SETUP.md.
 
 backend:
   name: github
   repo: muhahmmaad/muhahmmaad.github.io
   branch: main
-  # Replace with your deployed Cloudflare Worker URL (no trailing slash):
-  base_url: https://REPLACE-ME.workers.dev
+  base_url: https://portfolio-cms-auth.private-talos.workers.dev
 
-# Only takes effect when the site is opened on localhost, so it is safe to
-# commit. Lets you trial the editor before the OAuth helper exists:
-#   npx decap-server      (in one terminal, from the repo root)
-#   then open http://127.0.0.1:8899/admin/
+# Only used on localhost. Ignored on the live site.
 local_backend: true
 
-# Keep drafts in the CMS instead of publishing straight to the live site.
-publish_mode: editorial_workflow
-
-# Where drag-and-dropped images land.
 media_folder: assets/img/uploads
 public_folder: /assets/img/uploads
 
@@ -30,67 +20,284 @@ display_url: https://muhahmmaad.github.io
 logo_url: https://muhahmmaad.github.io/assets/img/favicon.svg
 
 collections:
+  - name: appearance
+    label: Theme & appearance
+    description: Colours, font, light/dark, favicon, extra CSS.
+    files:
+      - name: theme
+        label: Theme
+        file: _data/theme.yml
+        fields:
+          - label: Accent colour (hue)
+            name: hue
+            widget: number
+            min: 0
+            max: 360
+            value_type: int
+            hint: "250 purple · 142 green · 230 blue · 340 pink · 25 orange"
+          - label: Font
+            name: font
+            widget: select
+            options:
+              - Poppins
+              - Inter
+              - Lato
+              - Montserrat
+              - Nunito
+              - Playfair Display
+              - Roboto
+              - Source Sans 3
+          - label: Default theme
+            name: default_mode
+            widget: select
+            options:
+              - { label: Light, value: light }
+              - { label: Dark, value: dark }
+          - { label: Favicon, name: favicon, widget: image, required: false }
+          - label: Extra CSS
+            name: custom_css
+            widget: text
+            required: false
+            hint: Optional. Advanced — pasted into every page.
+
+  - name: homepage
+    label: Homepage
+    description: Change any part of the live homepage. Publish and the site rebuilds in a minute.
+    files:
+      - name: identity
+        label: Site settings
+        file: _data/identity.yml
+        fields:
+          - { label: Full name, name: name, widget: string }
+          - { label: Short name (logo / footer), name: short_name, widget: string }
+          - { label: Tagline, name: tagline, widget: string }
+          - { label: Site description (SEO), name: description, widget: text }
+          - { label: Email, name: email, widget: string }
+          - { label: CV / resume PDF, name: cv_file, widget: file, required: false, hint: Upload a PDF. Keep the same button working on the homepage. }
+          - { label: CV download filename, name: cv_filename, widget: string, required: false, hint: e.g. Muhammad-Ahmad-CV.pdf }
+          - label: Social links
+            name: social
+            widget: list
+            summary: "{{name}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: URL, name: url, widget: string }
+              - { label: Icon class, name: icon, widget: string, hint: "Unicons class, e.g. uil uil-linkedin-alt" }
+          - label: Navigation
+            name: nav
+            widget: list
+            summary: "{{label}}"
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Link, name: href, widget: string, hint: "Page section like #about, or /blog/" }
+              - { label: Icon class, name: icon, widget: string }
+          - label: Footer links
+            name: footer_links
+            widget: list
+            summary: "{{label}}"
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Link, name: href, widget: string }
+
+      - name: home
+        label: Home / hero
+        file: _data/home.yml
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Subtitle, name: subtitle, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Photo, name: image, widget: image }
+          - { label: Button text, name: cta_label, widget: string }
+          - { label: Button link, name: cta_link, widget: string }
+          - { label: Scroll label, name: scroll_label, widget: string }
+
+      - name: about
+        label: About
+        file: _data/about.yml
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Subtitle, name: subtitle, widget: string }
+          - { label: Photo, name: image, widget: image }
+          - { label: Description, name: description, widget: text }
+          - label: Stats
+            name: stats
+            widget: list
+            summary: "{{value}} {{label}}"
+            fields:
+              - { label: Value, name: value, widget: string }
+              - { label: Label, name: label, widget: string }
+          - { label: CV button text, name: cv_label, widget: string }
+
+      - name: skills
+        label: Skills
+        file: _data/skills.yml
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Subtitle, name: subtitle, widget: string }
+          - label: Skill groups
+            name: groups
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { label: Group title, name: title, widget: string }
+              - { label: Group subtitle, name: subtitle, widget: string }
+              - { label: Icon class, name: icon, widget: string, hint: "e.g. uil uil-megaphone" }
+              - label: Skills
+                name: items
+                widget: list
+                summary: "{{name}} {{percent}}%"
+                fields:
+                  - { label: Name, name: name, widget: string }
+                  - { label: Percent, name: percent, widget: number, min: 0, max: 100, value_type: int }
+
+      - name: qualification
+        label: Qualification
+        file: _data/qualification.yml
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Subtitle, name: subtitle, widget: string }
+          - { label: Education tab label, name: education_label, widget: string }
+          - { label: Experience tab label, name: experience_label, widget: string }
+          - label: Education
+            name: education
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Place, name: subtitle, widget: string }
+              - { label: Date, name: date, widget: string }
+          - label: Experience
+            name: experience
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Place, name: subtitle, widget: string }
+              - { label: Date, name: date, widget: string }
+
+      - name: services
+        label: Services
+        file: _data/services.yml
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Subtitle, name: subtitle, widget: string }
+          - { label: "View more" label, name: more_label, widget: string }
+          - label: Services
+            name: items
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Icon class, name: icon, widget: string, hint: "e.g. uil uil-megaphone" }
+              - label: Points
+                name: points
+                widget: list
+                field: { label: Point, name: point, widget: string }
+
+      - name: research
+        label: Research
+        file: _data/research.yml
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Subtitle, name: subtitle, widget: string }
+          - label: Publications
+            name: items
+            widget: list
+            summary: "{{title}}"
+            fields:
+              - { label: Title, name: title, widget: string }
+              - { label: Meta (authors / type), name: meta, widget: string, required: false }
+              - { label: Status, name: status, widget: string, required: false }
+              - { label: Image, name: image, widget: image, required: false }
+              - { label: Description, name: description, widget: text }
+
+      - name: cta
+        label: Campaign banner
+        file: _data/cta.yml
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Description, name: description, widget: text }
+          - { label: Button text, name: button_label, widget: string }
+          - { label: Button link, name: button_link, widget: string }
+          - { label: Image, name: image, widget: image }
+
+      - name: references
+        label: References
+        file: _data/references.yml
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Subtitle, name: subtitle, widget: string }
+          - label: Referees
+            name: items
+            widget: list
+            summary: "{{name}}"
+            fields:
+              - { label: Name, name: name, widget: string }
+              - { label: Role, name: role, widget: string }
+              - { label: Photo, name: image, widget: image, required: false }
+              - { label: Quote, name: quote, widget: text }
+
+      - name: insights
+        label: Insights (blog teaser)
+        file: _data/insights.yml
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Subtitle, name: subtitle, widget: string }
+          - { label: All posts button, name: all_posts_label, widget: string }
+
+      - name: contact
+        label: Contact
+        file: _data/contact.yml
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Subtitle, name: subtitle, widget: string }
+          - { label: Submit button, name: submit_label, widget: string }
+          - { label: Form action URL, name: form_action, widget: string }
+          - { label: Email subject, name: form_subject, widget: string }
+          - label: Contact info
+            name: info
+            widget: list
+            summary: "{{label}}: {{value}}"
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Value, name: value, widget: string }
+              - { label: Icon class, name: icon, widget: string }
+          - label: Form fields
+            name: fields
+            widget: list
+            summary: "{{label}}"
+            fields:
+              - { label: Label, name: label, widget: string }
+              - { label: Field name, name: name, widget: string }
+              - label: Type
+                name: type
+                widget: select
+                options: [text, email, tel, url, textarea]
+              - { label: Required, name: required, widget: boolean, default: true }
+              - { label: Half width, name: half, widget: boolean, default: false }
+
   - name: posts
     label: Blog posts
     label_singular: Blog post
-    description: >-
-      Write a post, drop in a cover image, hit Publish. The site rebuilds
-      itself within a minute or two.
+    description: Write a post, drop in a cover image, hit Publish. The site rebuilds itself within a minute or two.
     folder: _posts
     create: true
-    # Jekyll requires the date prefix in the filename.
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     summary: "{{title}}"
-    # Gives each entry a "View on site" link once it is published, so a post
-    # can be checked without hunting for its URL. Must match the Jekyll
-    # permalink in _config.yml (/blog/:title/).
     preview_path: "blog/{{fields.title}}"
     preview_path_date_field: date
     sortable_fields: [date, title]
     fields:
-      - label: Title
-        name: title
-        widget: string
-        hint: Shown on the card and at the top of the post.
-
+      - { label: Title, name: title, widget: string, hint: Shown on the card and at the top of the post. }
       - label: Date
         name: date
         widget: datetime
         date_format: YYYY-MM-DD
         time_format: false
         format: YYYY-MM-DD
-        hint: Posts are listed newest first. A future date hides the post until then.
-
-      - label: Short description
-        name: description
-        widget: text
-        required: false
-        hint: One or two sentences. Used on the blog card and in Google results.
-
-      - label: Category
-        name: category
-        widget: string
-        required: false
-        hint: >-
-          Anything you like — reuse an existing one to group posts together, or
-          type a new one to start a new group.
-
-      - label: Cover image
-        name: image
-        widget: image
-        required: false
-        hint: Optional. Drag an image in, or leave blank to use a generated cover.
-
-      - label: Video link
-        name: video
-        widget: string
-        required: false
-        hint: >-
-          Optional. Paste a YouTube, Vimeo or Instagram URL. The post then
-          shows under the Videos tab with a play badge. Do not upload video
-          files — host them elsewhere and link.
-
-      - label: Body
-        name: body
-        widget: markdown
-        hint: Use the toolbar for headings, bold, lists, links and inline images.
+        hint: Posts are listed newest first. A future date hides the post until that date.
+      - { label: Short description, name: description, widget: text, required: false }
+      - { label: Category, name: category, widget: string, required: false }
+      - { label: Cover image, name: image, widget: image, required: false }
+      - { label: Video link, name: video, widget: string, required: false, hint: YouTube, Vimeo or Instagram URL. Do not upload video files. }
+      - { label: Body, name: body, widget: markdown }

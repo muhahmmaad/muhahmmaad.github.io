@@ -1,0 +1,57 @@
+title: Skills
+subtitle: My technical level
+
+groups:
+  - title: Marketing
+    subtitle: More than 1.5 years
+    icon: uil uil-megaphone
+    items:
+      - name: Influencer Marketing
+        percent: 90
+      - name: Social Media Marketing
+        percent: 90
+      - name: Meta Ads Manager
+        percent: 80
+      - name: Google Ads & Analytics
+        percent: 75
+      - name: SEO
+        percent: 70
+
+  - title: Data Analysis
+    subtitle: Research & statistics
+    icon: uil uil-chart-line
+    items:
+      - name: SPSS
+        percent: 85
+      - name: SmartPLS (PLS-SEM)
+        percent: 80
+      - name: AMOS (SEM & CFA)
+        percent: 75
+      - name: Research Methodology
+        percent: 85
+
+  - title: Design & Content
+    subtitle: Creative production
+    icon: uil uil-palette
+    items:
+      - name: Canva
+        percent: 90
+      - name: Photoshop & Illustrator
+        percent: 80
+      - name: Premiere Pro & CapCut
+        percent: 80
+      - name: Lightroom & After Effects
+        percent: 70
+
+  - title: Languages
+    subtitle: Four languages
+    icon: uil uil-comments
+    items:
+      - name: Urdu — Native
+        percent: 100
+      - name: English — Advanced
+        percent: 90
+      - name: Hindi — Conversational
+        percent: 75
+      - name: Chinese (Mandarin) — HSK I & II
+        percent: 60

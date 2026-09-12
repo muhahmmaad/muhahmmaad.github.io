@@ -1,17 +1,28 @@
-{%- assign page_title = page.title | default: site.title -%}
+{%- assign site_title = site.data.identity.name | default: site.title -%}
+{%- assign site_tagline = site.data.identity.tagline | default: site.tagline -%}
+{%- assign site_desc = site.data.identity.description | default: site.description -%}
+{%- assign page_title = page.title | default: site_title -%}
 {%- if page.title -%}
-  {%- assign full_title = page.title | append: " | " | append: site.title -%}
+  {%- assign full_title = page.title | append: " | " | append: site_title -%}
 {%- else -%}
-  {%- assign full_title = site.title | append: " | " | append: site.tagline -%}
+  {%- assign full_title = site_title | append: " | " | append: site_tagline -%}
 {%- endif -%}
-{%- assign page_desc = page.description | default: site.description | strip_newlines -%}
-{%- assign page_image = page.image | default: "/assets/img/profile.jpg" | absolute_url -%}
+{%- assign page_desc = page.description | default: site_desc | strip_newlines -%}
+{%- assign page_image = page.image | default: site.data.about.image | default: "/assets/img/profile.jpg" | absolute_url -%}
+{%- assign theme = site.data.theme -%}
+{%- assign theme_hue = theme.hue | default: 250 -%}
+{%- assign theme_font = theme.font | default: "Poppins" -%}
+{%- assign theme_favicon = theme.favicon | default: "/assets/img/favicon.svg" -%}
+{%- assign font_slug = theme_font | replace: ' ', '+' -%}
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="theme-color" content="hsl({{ theme_hue }}, 69%, 61%)">
+<meta name="format-detection" content="telephone=no">
 
 <meta name="description" content="{{ page_desc }}">
-<meta name="author" content="{{ site.author.name }}">
+<meta name="author" content="{{ site.data.identity.name | default: site.author.name }}">
 
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 
@@ -24,7 +35,12 @@
 <meta name="twitter:card" content="summary_large_image">
 
 <!--==================== FAVICON ====================-->
-<link rel="icon" type="image/svg+xml" href="{{ '/assets/img/favicon.svg' | relative_url }}">
+<link rel="icon" href="{{ theme_favicon | relative_url }}">
+
+<!--==================== FONTS ====================-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family={{ font_slug }}:wght@400;500;600&display=swap">
 
 <!--==================== UNICONS ====================-->
 <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
@@ -34,5 +50,14 @@
 
 <!--==================== CSS ====================-->
 <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+<style>
+:root {
+    --hue-color: {{ theme_hue }};
+    --body-font: '{{ theme_font }}', sans-serif;
+}
+</style>
+{% if theme.custom_css and theme.custom_css != "" %}
+<style>{{ theme.custom_css }}</style>
+{% endif %}
 
 <title>{{ full_title }}</title>
