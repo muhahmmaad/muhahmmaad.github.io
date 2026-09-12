@@ -33,6 +33,12 @@ export default {
 };
 
 function handleAuth(url, env) {
+  // Single-user shortcut: a repo token on the Worker is enough for this
+  // personal site. The token is only postMessage'd back to ALLOWED_ORIGINS.
+  if (env.GITHUB_TOKEN && !env.GITHUB_CLIENT_ID) {
+    return postMessageResponse({ token: env.GITHUB_TOKEN, provider: 'github' });
+  }
+
   if (!env.GITHUB_CLIENT_ID) {
     return new Response('GITHUB_CLIENT_ID is not set on this Worker.', { status: 500 });
   }
