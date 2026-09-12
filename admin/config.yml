@@ -7,7 +7,7 @@ backend:
   name: github
   repo: muhahmmaad/muhahmmaad.github.io
   branch: main
-  base_url: https://portfolio-cms-auth.private-talos.workers.dev
+  base_url: https://portfolio-cms-auth.giant-lift.workers.dev
 
 # Only used on localhost. Ignored on the live site.
 local_backend: true

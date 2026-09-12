@@ -52,7 +52,7 @@
         if (errors.length) throw new Error(errors.join('\n'));
       }
 
-      fetch('config.yml?v=20260912j', { cache: 'no-store' })
+      fetch('config.yml?v=20260912k', { cache: 'no-store' })
         .then(function (res) {
           if (!res.ok) throw new Error('config.yml HTTP ' + res.status);
           return res.text();
