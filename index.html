@@ -14,7 +14,7 @@ layout: default
 {%- assign contact = site.data.contact -%}
 
     <!--==================== HOME ====================-->
-    <section class="home section" id="home">
+    <section class="home section" id="home" data-cms="homepage/home">
         <div class="home__container container grid">
             <div class="home__content grid">
                 <div class="home__social">
@@ -58,7 +58,7 @@ layout: default
     </section>
 
     <!--==================== ABOUT ====================-->
-    <section class="about section" id="about">
+    <section class="about section" id="about" data-cms="homepage/about">
         <h2 class="section__title">{{ about.title }}</h2>
         <span class="section__subtitle">{{ about.subtitle }}</span>
 
@@ -87,7 +87,7 @@ layout: default
     </section>
 
     <!--==================== SKILLS ====================-->
-    <section class="skills section" id="skills">
+    <section class="skills section" id="skills" data-cms="homepage/skills">
         <h2 class="section__title">{{ skills.title }}</h2>
         <span class="section__subtitle">{{ skills.subtitle }}</span>
 
@@ -156,7 +156,7 @@ layout: default
     </section>
 
     <!--==================== QUALIFICATION ====================-->
-    <section class="qualification section">
+    <section class="qualification section" id="qualification" data-cms="homepage/qualification">
         <h2 class="section__title">{{ qualification.title }}</h2>
         <span class="section__subtitle">{{ qualification.subtitle }}</span>
 
@@ -245,7 +245,7 @@ layout: default
     </section>
 
     <!--==================== SERVICES ====================-->
-    <section class="services section" id="services">
+    <section class="services section" id="services" data-cms="homepage/services">
         <h2 class="section__title">{{ services.title }}</h2>
         <span class="section__subtitle">{{ services.subtitle }}</span>
 
@@ -286,7 +286,7 @@ layout: default
     </section>
 
     <!--==================== PORTFOLIO / RESEARCH ====================-->
-    <section class="portfolio section" id="portfolio">
+    <section class="portfolio section" id="portfolio" data-cms="homepage/research">
         <h2 class="section__title">{{ research.title }}</h2>
         <span class="section__subtitle">{{ research.subtitle }}</span>
 
@@ -314,7 +314,7 @@ layout: default
     </section>
 
     <!--==================== PROJECT IN MIND ====================-->
-    <section class="project section">
+    <section class="project section" data-cms="homepage/cta">
         <div class="project__bg">
             <div class="project__container container grid">
                 <div class="project__data">
@@ -331,7 +331,7 @@ layout: default
     </section>
 
     <!--==================== TESTIMONIAL / REFERENCES ====================-->
-    <section class="testimonial section">
+    <section class="testimonial section" data-cms="homepage/references">
         <h2 class="section__title">{{ references.title }}</h2>
         <span class="section__subtitle">{{ references.subtitle }}</span>
 
@@ -358,7 +358,7 @@ layout: default
 
     <!--==================== INSIGHTS / BLOG ====================-->
     {% if site.posts.size > 0 %}
-    <section class="insights section" id="insights">
+    <section class="insights section" id="insights" data-cms="homepage/insights">
         <h2 class="section__title">{{ insights.title }}</h2>
         <span class="section__subtitle">{{ insights.subtitle }}</span>
 
@@ -379,7 +379,7 @@ layout: default
     {% endif %}
 
     <!--==================== CONTACT ME ====================-->
-    <section class="contact section" id="contact">
+    <section class="contact section" id="contact" data-cms="homepage/contact">
         <h2 class="section__title">{{ contact.title }}</h2>
         <span class="section__subtitle">{{ contact.subtitle }}</span>
 

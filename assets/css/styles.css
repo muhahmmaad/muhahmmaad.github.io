@@ -2368,3 +2368,85 @@ select {
         forced-color-adjust: none;
     }
 }
+
+/*========== Admin quick-edit (only when logged into /admin/) ==========*/
+.quick-edit,
+.quick-edit-bar {
+    display: none;
+}
+
+html.is-admin .quick-edit-bar {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: .5rem .75rem;
+    position: sticky;
+    top: 0;
+    z-index: 200;
+    padding: .45rem .9rem;
+    padding-left: max(.9rem, env(safe-area-inset-left));
+    padding-right: max(.9rem, env(safe-area-inset-right));
+    background: var(--first-color);
+    color: #fff;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-medium);
+}
+
+html.is-admin .quick-edit-bar a,
+html.is-admin .quick-edit-bar button {
+    color: #fff;
+    background: transparent;
+    border: 0;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+html.is-admin .quick-edit-bar a:hover,
+html.is-admin .quick-edit-bar button:hover {
+    text-decoration: underline;
+}
+
+.quick-edit-bar__label {
+    font-weight: var(--font-semi-bold);
+    margin-right: .25rem;
+}
+
+html.is-admin .section[data-cms] {
+    position: relative;
+}
+
+html.is-admin .quick-edit {
+    display: inline-flex;
+    align-items: center;
+    position: absolute;
+    top: .75rem;
+    right: .75rem;
+    z-index: 5;
+    padding: .25rem .7rem;
+    border-radius: .4rem;
+    background: var(--first-color);
+    color: #fff;
+    font-size: var(--smaller-font-size);
+    font-weight: var(--font-medium);
+    text-decoration: none;
+    box-shadow: 0 8px 20px hsla(var(--hue-color), 69%, 40%, .25);
+}
+
+html.is-admin .quick-edit:hover {
+    background: var(--first-color-alt);
+    color: #fff;
+}
+
+@media screen and (max-width: 767px) {
+    html.is-admin .quick-edit-bar {
+        font-size: var(--smaller-font-size);
+        gap: .35rem .6rem;
+    }
+
+    html.is-admin .quick-edit {
+        top: .4rem;
+        right: .4rem;
+    }
+}
