@@ -4,11 +4,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex">
+    <meta http-equiv="Cache-Control" content="no-store">
     <title>Content Manager | Muhammad Ahmad</title>
 </head>
 <body>
-    <!-- Decap CMS: the whole editor is this one script. It reads admin/config.yml,
-         talks to GitHub, and commits posts back to the repo. -->
+    <script>window.CMS_MANUAL_INIT = true;</script>
+    <script src="https://unpkg.com/js-yaml@4.1.1/dist/js-yaml.min.js"></script>
     <script src="https://unpkg.com/decap-cms@^3.3.3/dist/decap-cms.js"></script>
+    <script>
+      fetch('config.yml?v=20260912b', { cache: 'no-store' })
+        .then(function (res) {
+          if (!res.ok) throw new Error('config.yml HTTP ' + res.status);
+          return res.text();
+        })
+        .then(function (text) {
+          var config = jsyaml.load(text);
+          if (!config || !config.backend) {
+            throw new Error('config.yml parsed but backend is missing');
+          }
+          CMS.init({ config: config });
+        })
+        .catch(function (err) {
+          document.body.innerHTML =
+            '<pre style="font:16px/1.4 sans-serif;padding:2rem;color:#b00020">' +
+            'Failed to load CMS config:\n' + String(err) +
+            '</pre>';
+        });
+    </script>
 </body>
 </html>

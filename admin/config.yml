@@ -182,7 +182,9 @@ collections:
         fields:
           - { label: Title, name: title, widget: string }
           - { label: Subtitle, name: subtitle, widget: string }
-          - { label: View more button, name: more_label, widget: string }
+          - label: View more button
+            name: more_label
+            widget: string
           - label: Services
             name: items
             widget: list
