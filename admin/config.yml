@@ -113,7 +113,7 @@ collections:
         fields:
           - { label: Full name, name: name, widget: string, hint: This is the name on the homepage, logo, footer and browser tab. }
           - { label: Name badge, name: name_badge, widget: crop-image, required: false, aspect_ratio: "1/1", hint: Upload, crop, then it sits next to the name. }
-          - { label: Tagline, name: tagline, widget: string }
+          - { label: Tagline, name: tagline, widget: string, hint: Shown under the name on the homepage and in the footer. }
           - { label: Site description (SEO), name: description, widget: text }
           - { label: Email, name: email, widget: string }
           - { label: CV / resume PDF, name: cv_file, widget: file, required: false, hint: Upload a PDF. Keep the same button working on the homepage. }
@@ -153,7 +153,6 @@ collections:
         file: _data/home.yml
         fields:
           - { label: Greeting before name, name: greeting, widget: string, hint: "Shown before Full name, e.g. Hi, I'm" }
-          - { label: Subtitle, name: subtitle, widget: string }
           - { label: Description, name: description, widget: text }
           - { label: Photo, name: image, widget: crop-image, aspect_ratio: "200/187", hint: Crop to fit the blob frame on the homepage. }
           - { label: Button text, name: cta_label, widget: string }
