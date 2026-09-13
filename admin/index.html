@@ -6,17 +6,38 @@
     <meta name="robots" content="noindex">
     <meta http-equiv="Cache-Control" content="no-store">
     <title>Content Manager | Muhammad Ahmad</title>
-    <link rel="stylesheet" href="admin.css?v=20260912i">
+    <link rel="stylesheet" href="admin.css?v=20260912m">
     <link rel="preconnect" href="https://unpkg.com" crossorigin>
 </head>
 <body>
     <div id="cms-boot">Loading editor…</div>
-    <script>window.CMS_MANUAL_INIT = true;</script>
+    <script>
+      window.CMS_MANUAL_INIT = true;
+      (function () {
+        var nativeConfirm = window.confirm.bind(window);
+        window.confirm = function (msg) {
+          if (msg && /local backup|recovered for this entry/i.test(String(msg))) {
+            return false;
+          }
+          return nativeConfirm(msg);
+        };
+        try {
+          ["NetlifyCMS", "netlify-cms", "decap-cms", "localforage"].forEach(function (name) {
+            try { indexedDB.deleteDatabase(name); } catch (err) {}
+          });
+          Object.keys(localStorage).forEach(function (key) {
+            if (/backup|cms-entry|editorial/i.test(key) && !/cms-user/i.test(key)) {
+              localStorage.removeItem(key);
+            }
+          });
+        } catch (err) {}
+      })();
+    </script>
     <script src="https://unpkg.com/js-yaml@4.1.1/dist/js-yaml.min.js"></script>
     <script src="https://unpkg.com/decap-cms@3.3.3/dist/decap-cms.js"></script>
     <script src="https://unpkg.com/cropperjs@1.6.2/dist/cropper.min.js"></script>
-    <script src="crop-widget.js?v=20260912i"></script>
-    <script src="expand-lists.js?v=20260912i"></script>
+    <script src="crop-widget.js?v=20260912m"></script>
+    <script src="expand-lists.js?v=20260912m"></script>
     <script>
       function auditConfig(config) {
         var errors = [];
@@ -52,7 +73,7 @@
         if (errors.length) throw new Error(errors.join('\n'));
       }
 
-      fetch('config.yml?v=20260912k', { cache: 'no-store' })
+      fetch('config.yml?v=20260912m', { cache: 'no-store' })
         .then(function (res) {
           if (!res.ok) throw new Error('config.yml HTTP ' + res.status);
           return res.text();
